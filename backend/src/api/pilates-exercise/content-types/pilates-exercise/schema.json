@@ -29,18 +29,13 @@
     "url": {
       "type": "string"
     },
-    "isFavorite": {
-      "type": "boolean",
-      "default": false,
-      "required": true
-    },
     "posterImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "private": true
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }
