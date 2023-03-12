@@ -23,10 +23,7 @@
       "multiple": false,
       "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "videos"
       ]
     },
     "url": {
@@ -36,6 +33,14 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "posterImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "private": true
     }
   }
 }

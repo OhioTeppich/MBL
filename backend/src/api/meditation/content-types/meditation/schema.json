@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "meditations",
+  "info": {
+    "singularName": "meditation",
+    "pluralName": "meditations",
+    "displayName": "Meditation",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "audio": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "audios"
+      ]
+    },
+    "length": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}
