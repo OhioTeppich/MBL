@@ -109,7 +109,7 @@ class StandardText {
     letterSpacing: 0,
   );
 
-  static TextStyle body1Itali = const TextStyle(
+  static TextStyle body1Italic = const TextStyle(
     fontFamily: 'Raleway',
     fontWeight: FontWeight.normal,
     fontStyle: FontStyle.italic,
@@ -119,7 +119,7 @@ class StandardText {
     letterSpacing: 0,
   );
 
-  static TextStyle body2Itali = const TextStyle(
+  static TextStyle body2Italic = const TextStyle(
     fontFamily: 'Raleway',
     fontWeight: FontWeight.normal,
     fontStyle: FontStyle.italic,
