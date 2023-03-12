@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pilates_exercises",
+  "info": {
+    "singularName": "pilates-exercise",
+    "pluralName": "pilates-exercises",
+    "displayName": "Pilates Exercise",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "length": {
+      "type": "integer"
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "isFavorite": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
