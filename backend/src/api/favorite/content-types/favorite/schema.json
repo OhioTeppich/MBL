@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "favorites",
+  "info": {
+    "singularName": "favorite",
+    "pluralName": "favorites",
+    "displayName": "favorite",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "contentId": {
+      "type": "biginteger",
+      "private": true,
+      "unique": false,
+      "required": true
+    },
+    "contentType": {
+      "type": "enumeration",
+      "enum": [
+        "pilates",
+        "meditation"
+      ],
+      "required": true,
+      "private": true
+    },
+    "userId": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
