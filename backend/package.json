@@ -1,5 +1,5 @@
 {
-  "name": "cms",
+  "name": "backend",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -9,18 +9,18 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
+  "devDependencies": {},
   "dependencies": {
-    "@strapi/plugin-i18n": "4.6.2",
-    "@strapi/plugin-users-permissions": "4.6.2",
-    "@strapi/strapi": "4.6.2",
-    "better-sqlite3": "8.0.1",
-    "lodash-es": "^4.17.21"
+    "@strapi/strapi": "4.7.1",
+    "@strapi/plugin-users-permissions": "4.7.1",
+    "@strapi/plugin-i18n": "4.7.1",
+    "better-sqlite3": "8.0.1"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "4b8e9787-530d-4b4f-859a-597c23f851d4"
+    "uuid": "57a69104-87d8-42e8-a7f4-6184eeae36fb"
   },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
