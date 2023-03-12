@@ -4,7 +4,8 @@
   "info": {
     "singularName": "meditation",
     "pluralName": "meditations",
-    "displayName": "Meditation"
+    "displayName": "Meditation",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,15 +17,12 @@
       "required": true
     },
     "audio": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "audios"
+      ]
     },
     "length": {
       "type": "integer",
