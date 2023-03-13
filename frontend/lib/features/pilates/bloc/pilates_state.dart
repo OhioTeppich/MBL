@@ -14,21 +14,27 @@ class PilatesState extends Equatable {
   PilatesState({
     this.status = PilatesStatus.initial,
     List<PilatesExercise>? pilatesExercises,
-  }) : pilatesExercises = pilatesExercises ?? [];
+    PilatesExercise? selectedExercise,
+  })  : pilatesExercises = pilatesExercises ?? [],
+        selectedExercise =
+            selectedExercise ?? PilatesExerciseMock.pilatesExerciseA;
 
   final List<PilatesExercise> pilatesExercises;
   final PilatesStatus status;
-  
+  final PilatesExercise selectedExercise;
+
   @override
   List<Object?> get props => [status, pilatesExercises];
 
   PilatesState copyWith({
     List<PilatesExercise>? pilatesExercises,
     PilatesStatus? status,
+    PilatesExercise? selectedExercise,
   }) {
     return PilatesState(
       status: status ?? this.status,
       pilatesExercises: pilatesExercises ?? this.pilatesExercises,
+      selectedExercise: selectedExercise ?? this.selectedExercise,
     );
   }
 }

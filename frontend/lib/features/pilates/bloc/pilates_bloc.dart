@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbl/mocks/pilates-exercise.mock.dart';
 import 'package:mbl/repository/mbl.repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mbl/repository/models/pilates.model.dart';
@@ -11,6 +12,7 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
     required this.mblRepository,
   }) : super(PilatesState()) {
     on<GetPilatesExercises>(_mapGetPilatesExercisesEventToState);
+    on<SelectPilatesExercises>(_mapSelectPilatesExerciseEventToState);
   }
   final MblRepository mblRepository;
 
@@ -29,5 +31,14 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
       print(stacktrace);
       emit(state.copyWith(status: PilatesStatus.error));
     }
+  }
+
+  void _mapSelectPilatesExerciseEventToState(
+      SelectPilatesExercises event, Emitter<PilatesState> emit) async {
+    emit(
+      state.copyWith(
+        selectedExercise: PilatesExerciseMock.pilatesExerciseB,
+      ),
+    );
   }
 }
