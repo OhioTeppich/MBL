@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -11,18 +11,18 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: const Icon(Icons.home),
+            label: AppLocalizations.of(context)!.home,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Meditation',
+            icon: const Icon(Icons.message),
+            label: AppLocalizations.of(context)!.meditation,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Pilates',
+            icon: const Icon(Icons.message),
+            label: AppLocalizations.of(context)!.pilates,
           ),
         ],
         currentIndex: currentIndex,
