@@ -8,7 +8,7 @@ class MblService {
 
   List<PilatesExercise> getPilatesExercises() {
     // implement api call instead of mock
-    return <PilatesExercise>[PilatesExerciseMock.pilatesExerciseA, PilatesExerciseMock.pilatesExerciseA, PilatesExerciseMock.pilatesExerciseA];
+    return <PilatesExercise>[PilatesExerciseMock.pilatesExerciseA, PilatesExerciseMock.pilatesExerciseB, PilatesExerciseMock.pilatesExerciseA];
   }
 
   dynamic getMeditations() {

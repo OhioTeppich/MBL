@@ -16,8 +16,7 @@ class PilatesState extends Equatable {
     List<PilatesExercise>? pilatesExercises,
     PilatesExercise? selectedExercise,
   })  : pilatesExercises = pilatesExercises ?? [],
-        selectedExercise =
-            selectedExercise ?? PilatesExerciseMock.pilatesExerciseA;
+        selectedExercise = selectedExercise ?? PilatesExerciseMock.pilatesExerciseC;
 
   final List<PilatesExercise> pilatesExercises;
   final PilatesStatus status;

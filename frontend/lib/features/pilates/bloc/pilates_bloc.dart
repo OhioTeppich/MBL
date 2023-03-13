@@ -35,9 +35,11 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
 
   void _mapSelectPilatesExerciseEventToState(
       SelectPilatesExercises event, Emitter<PilatesState> emit) async {
+    PilatesExercise exercise = state.pilatesExercises.elementAt(event.selectedIndex);
     emit(
       state.copyWith(
-        selectedExercise: PilatesExerciseMock.pilatesExerciseB,
+        status: PilatesStatus.selected,
+        selectedExercise: exercise,
       ),
     );
   }

@@ -9,7 +9,7 @@ class PilatesSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PilatesBloc, PilatesState>(
-      buildWhen: (previous, current) => current.status.isSuccess,
+      buildWhen: (previous, current) => current.status.isSuccess || current.status.isSelected,
       builder: (context, state) {
         return Center(
           child: Column(
@@ -18,7 +18,7 @@ class PilatesSuccess extends StatelessWidget {
                   'Pilates but no state :('),
               ElevatedButton(
                 onPressed: () {
-                  context.read<PilatesBloc>().add(SelectPilatesExercises(selected: PilatesExerciseMock.pilatesExerciseB));
+                  context.read<PilatesBloc>().add(SelectPilatesExercises(selectedIndex: 1));
                 },
                 child: const Text('Load Exercise B'),
               ),

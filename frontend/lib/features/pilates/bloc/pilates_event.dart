@@ -9,10 +9,10 @@ class GetPilatesExercises extends PilatesEvent{}
 
 class SelectPilatesExercises extends PilatesEvent {
   SelectPilatesExercises({
-    required this.selected,
+    required this.selectedIndex,
   });
-  final PilatesExercise selected;
+  final int selectedIndex;
 
   @override
-  List<Object?> get props => [selected];
+  List<Object?> get props => [selectedIndex];
 }
