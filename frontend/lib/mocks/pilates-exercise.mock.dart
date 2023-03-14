@@ -1,6 +1,6 @@
 
 import 'package:mbl/repository/models/pilates.model.dart';
-import 'package:mbl/repository/models/video.model.dart';
+import 'package:mbl/repository/models/media.model.dart';
 
 class PilatesExerciseMock {
     static PilatesExercise pilatesExerciseA = 

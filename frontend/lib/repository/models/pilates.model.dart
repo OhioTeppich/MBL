@@ -1,4 +1,4 @@
-import 'package:mbl/repository/models/video.model.dart';
+import 'package:mbl/repository/models/media.model.dart';
 
 class PilatesExercise {
   PilatesExercise(
