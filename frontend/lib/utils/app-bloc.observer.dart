@@ -1,6 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore_for_file: avoid_print
+
+import 'package:bloc/bloc.dart';
 
 class SimpleBlocObserver extends BlocObserver {
+  const SimpleBlocObserver();
+
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
@@ -8,14 +12,17 @@ class SimpleBlocObserver extends BlocObserver {
   }
 
   @override
-  void onTransition(Bloc bloc, Transition transition) {
+  void onTransition(
+    Bloc<dynamic, dynamic> bloc,
+    Transition<dynamic, dynamic> transition,
+  ) {
     super.onTransition(bloc, transition);
-    print('${bloc.runtimeType} $transition');
+    print(transition);
   }
 
   @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    print('${bloc.runtimeType} $error $stackTrace');
+  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
+    print(error);
     super.onError(bloc, error, stackTrace);
   }
 }

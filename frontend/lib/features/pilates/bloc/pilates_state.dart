@@ -1,14 +1,15 @@
 part of 'pilates_bloc.dart';
 
-enum PilatesStatus { initial, success, error, loading, selected }
+enum PilatesStatus { initial, success, error, loading, selected, fubar }
 
 extension PilatesX on PilatesStatus {
   bool get isInitial => this == PilatesStatus.initial;
   bool get isSuccess => this == PilatesStatus.success;
   bool get isError => this == PilatesStatus.error;
   bool get isLoading => this == PilatesStatus.loading;
-  bool get isSelected => this == PilatesStatus.selected;
 }
+
+// PilatesExercise? selectedExercise, is just implemented for presentational purposes to show how the state can be updated and will be deleted soon
 
 class PilatesState extends Equatable {
   PilatesState({
@@ -23,7 +24,7 @@ class PilatesState extends Equatable {
   final PilatesExercise selectedExercise;
 
   @override
-  List<Object?> get props => [status, pilatesExercises];
+  List<Object?> get props => [status, pilatesExercises, selectedExercise];
 
   PilatesState copyWith({
     List<PilatesExercise>? pilatesExercises,
