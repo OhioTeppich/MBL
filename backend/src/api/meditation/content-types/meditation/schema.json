@@ -27,6 +27,9 @@
     "length": {
       "type": "integer",
       "required": true
+    },
+    "speaker": {
+      "type": "string"
     }
   }
 }
