@@ -1,44 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:mbl/features/app/app_screens.service.dart';
-import 'package:mbl/features/app/bottom_navigation_bar.widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbl/features/app/app-layout.widget.dart';
+import 'package:mbl/features/pilates/bloc/pilates_bloc.dart';
+import 'package:mbl/repository/mbl.repository.dart';
+import 'package:mbl/repository/service/mbl.service.dart';
 
-class App extends StatefulWidget {
-  const App({super.key});
 
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  int _currentIndex = 0;
-
-  final _pageController = PageController(initialPage: 0);
-
-  void changePage(int index) {
-    _pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.ease,
-    );
-  }
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    AppScreensService appScreensService = AppScreensService(context);
-
     return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (newIndex) {
-          setState(() {
-            _currentIndex = newIndex;
-          });
-        },
-        children: appScreensService.getWidgets(),
-      ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTapCallback: changePage,
+      backgroundColor: Colors.deepOrangeAccent,
+      body: RepositoryProvider(
+        create: (context) => MblRepository(service: MblService()),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider<PilatesBloc>(
+              create: (context) => PilatesBloc(
+                mblRepository: context.read<MblRepository>(),
+              )..add(GetPilatesExercises()),
+            ),
+          ],
+          child: const AppLayout(),
+        ),
       ),
     );
   }
