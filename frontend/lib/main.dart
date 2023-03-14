@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mbl/features/app/app.widget.dart';
 import 'package:mbl/utils/app-bloc.observer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: "assets/.env");
   Bloc.observer = SimpleBlocObserver();
   runApp(const Main());
 }
