@@ -1,5 +1,9 @@
 import 'package:mbl/repository/models/media.model.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'pilates.model.g.dart';
+
+@JsonSerializable()
 class PilatesExercise {
   PilatesExercise(
     this.id,
@@ -12,4 +16,8 @@ class PilatesExercise {
   final String? title;
   final int? length;
   final Media? video;
+
+  factory PilatesExercise.fromJson(Map<String, dynamic> json) =>
+      _$PilatesExerciseFromJson(json);
+  Map<String, dynamic> toJson() => _$PilatesExerciseToJson(this);
 }

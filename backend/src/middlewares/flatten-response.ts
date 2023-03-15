@@ -31,7 +31,7 @@ const traverse = (data) => {
 
 async function respond(ctx, next) {
   await next();
-  if (!ctx.url.startsWith('/api') || ctx.url.startsWith('/api/auth')) {
+  if (true) {
     return;
   }
   console.log(`API request (${ctx.url}) detected, transforming response json...`);

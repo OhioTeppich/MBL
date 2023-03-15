@@ -14,7 +14,7 @@ class PilatesSuccess extends StatelessWidget {
         return Center(
           child: Column(
             children: [
-              Text(state.selectedExercise.title ?? 'Pilates but no state :('),
+              Text(state.pilatesExercises.first.title ?? 'Pilates but no state :('),
               ElevatedButton(
                 onPressed: () {
                   context.read<PilatesBloc>().add(
