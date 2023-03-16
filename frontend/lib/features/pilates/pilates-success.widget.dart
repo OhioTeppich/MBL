@@ -11,22 +11,20 @@ class PilatesSuccess extends StatelessWidget {
     return BlocBuilder<PilatesBloc, PilatesState>(
       buildWhen: (previous, current) => current.status.isSuccess,
       builder: (context, state) {
-        return Center(
-          child: Column(
-            children: [
-              Text(state.pilatesExercises.first.title ?? 'Pilates but no state :('),
-              ElevatedButton(
-                onPressed: () {
-                  context.read<PilatesBloc>().add(
-                        SelectPilatesExercises(
-                            selected: PilatesExerciseMock.pilatesExerciseB),
-                      );
-                },
-                child: const Text('Load Exercise B'),
-              ),
-            ],
-          ),
-        );
+        if (state.status == PilatesStatus.success) {
+          return Center(
+            child: Column(
+              children: [
+                Text(state.pilatesExercises.first.title ??
+                    'Pilates but no state :('),
+              ],
+            ),
+          );
+        } else {
+          return const Center(
+            child: Text('loading'),
+          );
+        }
       },
     );
   }

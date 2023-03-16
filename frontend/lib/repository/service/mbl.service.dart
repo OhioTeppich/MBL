@@ -11,7 +11,7 @@ import 'package:mbl/utils/strapi-response-converter.dart';
 class MblService {
   MblService({http.Client? httpClient, String? baseUrl})
       : _httpClient = httpClient ?? http.Client(),
-        baseUrl = "https://${dotenv.get('HOST')}/api";
+        baseUrl = "http://${dotenv.get('HOST')}/api";
 
   final String baseUrl;
   final Client _httpClient;
@@ -33,15 +33,20 @@ class MblService {
 
   Future<List<PilatesExercise>> getPilatesExercises() async {
     final response = await _httpClient.get(
-      getUrl(url: 'pilates-exercises', extraParameters: {'populate': 'video'}),
+      getUrl(url: 'pilates-exercises'),
     );
+
+    print(response.body);
+
     if (response.statusCode == 200) {
       if (response.body.isNotEmpty) {
         
-        Map<String, dynamic> convertedRepsonse = StrapiResponseConverter.traverse(json.decode(response.body));
+        StrapiResponse convertedRepsonse = StrapiResponseConverter.convert(response.body);
+
+        print(convertedRepsonse);
 
         return List<PilatesExercise>.from(
-          convertedRepsonse['data'].map(
+          convertedRepsonse.data.map(
                 (data) => PilatesExercise.fromJson(data),
               ),
         );

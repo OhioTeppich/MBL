@@ -18,11 +18,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.message),
-            label: AppLocalizations.of(context)!.meditation,
+            label: AppLocalizations.of(context)!.pilates,
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.message),
-            label: AppLocalizations.of(context)!.pilates,
+            label: AppLocalizations.of(context)!.meditation,
           ),
         ],
         currentIndex: currentIndex,

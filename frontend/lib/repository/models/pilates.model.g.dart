@@ -8,7 +8,7 @@ part of 'pilates.model.dart';
 
 PilatesExercise _$PilatesExerciseFromJson(Map<String, dynamic> json) =>
     PilatesExercise(
-      json['id'] as String?,
+      json['id'] as int?,
       json['title'] as String?,
       json['length'] as int?,
       json['video'] == null

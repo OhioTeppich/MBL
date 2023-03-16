@@ -20,7 +20,8 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
       GetPilatesExercises event, Emitter<PilatesState> emit) async {
     emit(state.copyWith(status: PilatesStatus.loading));
     try {
-      final pilatesExercises = await mblRepository.getPilatesExercises();
+      final List<PilatesExercise> pilatesExercises = await mblRepository.getPilatesExercises();
+      print(pilatesExercises);
       emit(
         state.copyWith(
           status: PilatesStatus.success,
@@ -28,6 +29,7 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
         ),
       );
     } catch (error, stacktrace) {
+      print(error);
       print(stacktrace);
       emit(state.copyWith(status: PilatesStatus.error));
     }

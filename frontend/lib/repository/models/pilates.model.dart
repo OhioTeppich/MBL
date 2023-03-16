@@ -12,7 +12,7 @@ class PilatesExercise {
     this.video
   );
 
-  final String? id;
+  final int? id;
   final String? title;
   final int? length;
   final Media? video;
