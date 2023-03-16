@@ -1,12 +1,5 @@
 import 'dart:convert';
-
-class StrapiResponse {
-
-  StrapiResponse(this.data, this.meta);
-
-  final List<Map<String, dynamic>> data;
-  final Map<String, dynamic> meta;
-}
+import 'package:mbl/repository/models/strapi_response.model.dart';
 
 class StrapiResponseConverter {
   static Map<String, dynamic> _removeObjectKey(Map<String, dynamic> object, String key) {

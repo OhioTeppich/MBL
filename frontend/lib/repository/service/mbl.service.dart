@@ -1,12 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
-import 'package:mbl/mocks/pilates-exercise.mock.dart';
 import 'package:mbl/repository/models/pilates.model.dart';
 import 'package:mbl/repository/models/result_error.dart';
-import 'package:mbl/utils/strapi-response-converter.dart';
+import 'package:mbl/repository/models/strapi_response.model.dart';
+import 'package:mbl/utils/strapi_response_converter.dart';
 
 class MblService {
   MblService({http.Client? httpClient, String? baseUrl})

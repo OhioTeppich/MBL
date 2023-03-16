@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/features/pilates/bloc/pilates_bloc.dart';
-import 'package:mbl/mocks/pilates-exercise.mock.dart';
 
 class PilatesSuccess extends StatelessWidget {
   const PilatesSuccess({super.key});

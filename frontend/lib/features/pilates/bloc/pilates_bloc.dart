@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mbl/mocks/pilates-exercise.mock.dart';
+import 'package:mbl/mocks/pilates_exercise.mock.dart';
 import 'package:mbl/repository/mbl.repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mbl/repository/models/pilates.model.dart';
