@@ -6,8 +6,6 @@ class StrapiResponse {
 
   final List<Map<String, dynamic>> data;
   final Map<String, dynamic> meta;
-
-  List<Map<String, dynamic>> get resultData => data;
 }
 
 class StrapiResponseConverter {

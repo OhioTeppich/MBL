@@ -20,11 +20,6 @@ class MblService {
     required String url,
     Map<String, String>? extraParameters,
   }) {
-
-    print(Uri.parse('$baseUrl/$url').replace(
-        queryParameters: extraParameters,
-      ));
-
     return Uri.parse('$baseUrl/$url').replace(
         queryParameters: extraParameters,
       );
@@ -36,14 +31,10 @@ class MblService {
       getUrl(url: 'pilates-exercises'),
     );
 
-    print(response.body);
-
     if (response.statusCode == 200) {
       if (response.body.isNotEmpty) {
         
         StrapiResponse convertedRepsonse = StrapiResponseConverter.convert(response.body);
-
-        print(convertedRepsonse);
 
         return List<PilatesExercise>.from(
           convertedRepsonse.data.map(
@@ -54,7 +45,7 @@ class MblService {
         throw ErrorEmptyResponse();
       }
     } else {
-      throw ErrorGettingGames('Error getting pilates exercises');
+      throw ErrorGettingPilatesExercises('Error getting pilates exercises');
     }
   }
 

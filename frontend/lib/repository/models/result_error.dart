@@ -1,5 +1,5 @@
-class ErrorGettingGames implements Exception {
-  ErrorGettingGames(String error);
+class ErrorGettingPilatesExercises implements Exception {
+  ErrorGettingPilatesExercises(String error);
 }
 
 class ErrorEmptyResponse implements Exception {}

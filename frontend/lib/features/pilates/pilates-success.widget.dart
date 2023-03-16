@@ -12,14 +12,7 @@ class PilatesSuccess extends StatelessWidget {
       buildWhen: (previous, current) => current.status.isSuccess,
       builder: (context, state) {
         if (state.status == PilatesStatus.success) {
-          return Center(
-            child: Column(
-              children: [
-                Text(state.pilatesExercises.first.title ??
-                    'Pilates but no state :('),
-              ],
-            ),
-          );
+          return Center(child: Text(state.pilatesExercises.first.title ?? 'Error'));
         } else {
           return const Center(
             child: Text('loading'),

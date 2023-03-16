@@ -10,7 +10,7 @@ class Media {
     this.alternativeText
   );
 
-  final String? id;
+  final int? id;
   final String? url;
   final String? alternativeText;
 
