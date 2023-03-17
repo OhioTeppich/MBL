@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mbl/mocks/pilates_exercise.mock.dart';
 import 'package:mbl/repository/mbl.repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:mbl/repository/models/api_response.model.dart';
+import 'package:mbl/repository/models/meta_data.model.dart';
 import 'package:mbl/repository/models/pilates.model.dart';
 
 part 'pilates_event.dart';
@@ -12,7 +13,6 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
     required this.mblRepository,
   }) : super(PilatesState()) {
     on<GetPilatesExercises>(_mapGetPilatesExercisesEventToState);
-    on<SelectPilatesExercises>(_mapSelectPilatesExerciseEventToState);
   }
   final MblRepository mblRepository;
 
@@ -20,24 +20,16 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
       GetPilatesExercises event, Emitter<PilatesState> emit) async {
     emit(state.copyWith(status: PilatesStatus.loading));
     try {
-      final List<PilatesExercise> pilatesExercises = await mblRepository.getPilatesExercises();
+      final ApiResponse apiResponse = await mblRepository.getPilatesExercises();
       emit(
         state.copyWith(
           status: PilatesStatus.success,
-          pilatesExercises: pilatesExercises,
+          pilatesExercises: apiResponse.data,
+          metaData: apiResponse.metaData,
         ),
       );
-    } catch (error, stacktrace) {
+    } catch (error) {
       emit(state.copyWith(status: PilatesStatus.error));
     }
-  }
-
-  void _mapSelectPilatesExerciseEventToState(
-      SelectPilatesExercises event, Emitter<PilatesState> emit) async {
-    emit(
-      state.copyWith(
-        selectedExercise: event.selected,
-      ),
-    );
   }
 }

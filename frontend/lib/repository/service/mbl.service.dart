@@ -1,6 +1,8 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:mbl/repository/models/api_response.model.dart';
+import 'package:mbl/repository/models/meta_data.model.dart';
 import 'package:mbl/repository/models/pilates.model.dart';
 import 'package:mbl/repository/models/result_error.dart';
 import 'package:mbl/repository/models/strapi_response.model.dart';
@@ -24,7 +26,7 @@ class MblService {
   }
       
 
-  Future<List<PilatesExercise>> getPilatesExercises() async {
+  Future<ApiResponse> getPilatesExercises() async {
     final response = await _httpClient.get(
       getUrl(url: 'pilates-exercises'),
     );
@@ -34,11 +36,15 @@ class MblService {
         
         StrapiResponse convertedRepsonse = StrapiResponseConverter.convert(response.body);
 
-        return List<PilatesExercise>.from(
+        final List<PilatesExercise> data = List<PilatesExercise>.from(
           convertedRepsonse.data.map(
                 (data) => PilatesExercise.fromJson(data),
               ),
         );
+        final MetaData metaData = MetaData.fromJson(convertedRepsonse.meta);
+        final ApiResponse apiResponse = ApiResponse<List<PilatesExercise>>(data: data, metaData: metaData);
+
+        return apiResponse;
       } else {
         throw ErrorEmptyResponse();
       }
