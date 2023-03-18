@@ -9,3 +9,6 @@ HOST = 'your ip here';
 ````
 dotenv.get('HOST')
 ````
+
+### Setup git hooks
+git config core.hooksPath .githooks/
