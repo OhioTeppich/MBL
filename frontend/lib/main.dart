@@ -5,8 +5,8 @@ import 'package:mbl/features/app/app.widget.dart';
 import 'package:mbl/utils/app_bloc.observer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-Future main() async {
-  await dotenv.load(fileName: "assets/environment/development/.env");
+Future<void> main() async {
+  await dotenv.load(fileName: 'assets/environment/development/.env');
   Bloc.observer = const SimpleBlocObserver();
   runApp(const Main());
 }
