@@ -5,7 +5,6 @@ import 'package:mbl/features/pilates/bloc/pilates_bloc.dart';
 import 'package:mbl/repository/mbl.repository.dart';
 import 'package:mbl/repository/service/mbl.service.dart';
 
-
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 

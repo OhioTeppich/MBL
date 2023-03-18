@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class StandardColor {
-  static const Color primary =  Color(0xFFEDE0D8);
+  static const Color primary = Color(0xFFEDE0D8);
   static const Color secondary = Color(0xFFE1CCBE);
-  
 
   static const Color accent = Color(0xFF77A0A5);
   static const Color accentOnSeconday = Color(0xFF5F8084);
@@ -15,7 +14,6 @@ class StandardColor {
   static const Color textColor = Color(0xFF3B3B3B);
   static const Color textContrastColor = Color(0xFFEEEDEB);
   static const Color headlineAccent = Color(0xFF757263);
-
 }
 
 class StandardText {
@@ -125,7 +123,7 @@ class StandardText {
     fontStyle: FontStyle.italic,
     fontSize: 14,
     color: StandardColor.textColor,
-    height:16,
+    height: 16,
     letterSpacing: 0,
   );
 

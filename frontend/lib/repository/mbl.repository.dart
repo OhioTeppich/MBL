@@ -7,7 +7,7 @@ class MblRepository {
   });
   final MblService service;
 
-  Future<List<PilatesExercise>> getPilatesExercises() async => service.getPilatesExercises();
+  Future<List<PilatesExercise>> getPilatesExercises() async =>
+      service.getPilatesExercises();
   Future<List<dynamic>> getMeditations() async => service.getMeditations();
-
 }

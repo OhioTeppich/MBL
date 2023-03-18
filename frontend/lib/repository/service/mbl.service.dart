@@ -3,12 +3,16 @@ import 'package:mbl/repository/models/pilates.model.dart';
 
 class MblService {
   MblService(
-    // implement api configuration
-  );
+      // implement api configuration
+      );
 
   List<PilatesExercise> getPilatesExercises() {
     // implement api call instead of mock
-    return <PilatesExercise>[PilatesExerciseMock.pilatesExerciseA, PilatesExerciseMock.pilatesExerciseB, PilatesExerciseMock.pilatesExerciseA];
+    return <PilatesExercise>[
+      PilatesExerciseMock.pilatesExerciseA,
+      PilatesExerciseMock.pilatesExerciseB,
+      PilatesExerciseMock.pilatesExerciseA
+    ];
   }
 
   dynamic getMeditations() {
