@@ -2,10 +2,8 @@
 
 ### assets/.env
 ````
-HOST = 'your ip here';
+HOST = 'your ip here:1337';
 ````
 
-### Access env vars
-````
-dotenv.get('HOST')
-````
+### Run code gen for json serializable
+flutter pub run build_runner build
