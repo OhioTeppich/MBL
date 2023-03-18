@@ -16,7 +16,8 @@ class PilatesState extends Equatable {
     this.status = PilatesStatus.initial,
     List<PilatesExercise>? pilatesExercises,
     MetaData? metaData,
-  })  : pilatesExercises = pilatesExercises ?? [], metaData = metaData ?? MetaData.empty;
+  })  : pilatesExercises = pilatesExercises ?? [],
+        metaData = metaData ?? MetaData.empty;
 
   final List<PilatesExercise> pilatesExercises;
   final MetaData metaData;

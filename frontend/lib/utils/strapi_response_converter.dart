@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:mbl/repository/models/strapi_response.model.dart';
 
 class StrapiResponseConverter {
-  static Map<String, dynamic> _removeObjectKey(Map<String, dynamic> object, String key) {
+  static Map<String, dynamic> _removeObjectKey(
+      Map<String, dynamic> object, String key) {
     return {
       'id': object['id'],
       ...object[key],

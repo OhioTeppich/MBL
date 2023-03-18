@@ -1,5 +1,4 @@
 class StrapiResponse {
-
   StrapiResponse(this.data, this.meta);
 
   final List<Map<String, dynamic>> data;

@@ -5,30 +5,30 @@ class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final Function onTapCallback;
 
-
-  const CustomBottomNavigationBar({super.key, required this.currentIndex, required this.onTapCallback});
+  const CustomBottomNavigationBar(
+      {super.key, required this.currentIndex, required this.onTapCallback});
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.home),
-            label: AppLocalizations.of(context)!.home,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.message),
-            label: AppLocalizations.of(context)!.meditation,
-          ),
-          BottomNavigationBarItem(
-            icon: const Icon(Icons.message),
-            label: AppLocalizations.of(context)!.pilates,
-          ),
-        ],
-        currentIndex: currentIndex,
-        onTap: (int index) {
-          onTapCallback(index);
-        },
-      );
+      items: [
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.home),
+          label: AppLocalizations.of(context)!.home,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.message),
+          label: AppLocalizations.of(context)!.meditation,
+        ),
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.message),
+          label: AppLocalizations.of(context)!.pilates,
+        ),
+      ],
+      currentIndex: currentIndex,
+      onTap: (int index) {
+        onTapCallback(index);
+      },
+    );
   }
 }
