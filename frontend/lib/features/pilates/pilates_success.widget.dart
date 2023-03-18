@@ -10,13 +10,14 @@ class PilatesSuccess extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PilatesBloc, PilatesState>(
       builder: (context, state) {
-        switch(state.status) {
+        switch (state.status) {
           case PilatesStatus.loading:
             return const Center(
               child: Text('loading'),
             );
           case PilatesStatus.success:
-            return Center(child: Text(state.pilatesExercises.first.title ?? 'Error'));
+            return Center(
+                child: Text(state.pilatesExercises.first.title ?? 'Error'));
           case PilatesStatus.error:
             return ErrorWidget(AppLocalizations.of(context)!.errorWidgetLabel);
           case PilatesStatus.initial:

@@ -5,12 +5,7 @@ part 'pilates.model.g.dart';
 
 @JsonSerializable()
 class PilatesExercise {
-  PilatesExercise(
-    this.id,
-    this.title,
-    this.length,
-    this.video
-  );
+  PilatesExercise(this.id, this.title, this.length, this.video);
 
   final int? id;
   final String? title;

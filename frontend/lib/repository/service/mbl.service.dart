@@ -21,10 +21,9 @@ class MblService {
     Map<String, String>? extraParameters,
   }) {
     return Uri.parse('$baseUrl/$url').replace(
-        queryParameters: extraParameters,
-      );
+      queryParameters: extraParameters,
+    );
   }
-      
 
   Future<ApiResponse> getPilatesExercises() async {
     final response = await _httpClient.get(
@@ -33,16 +32,17 @@ class MblService {
 
     if (response.statusCode == 200) {
       if (response.body.isNotEmpty) {
-        
-        StrapiResponse convertedRepsonse = StrapiResponseConverter.convert(response.body);
+        StrapiResponse convertedRepsonse =
+            StrapiResponseConverter.convert(response.body);
 
         final List<PilatesExercise> data = List<PilatesExercise>.from(
           convertedRepsonse.data.map(
-                (data) => PilatesExercise.fromJson(data),
-              ),
+            (data) => PilatesExercise.fromJson(data),
+          ),
         );
         final MetaData metaData = MetaData.fromJson(convertedRepsonse.meta);
-        final ApiResponse apiResponse = ApiResponse<List<PilatesExercise>>(data: data, metaData: metaData);
+        final ApiResponse apiResponse =
+            ApiResponse<List<PilatesExercise>>(data: data, metaData: metaData);
 
         return apiResponse;
       } else {
