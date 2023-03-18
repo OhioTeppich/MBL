@@ -39,6 +39,6 @@ class StrapiResponseConverter {
 
     final meta = decodedJson['meta'] as Map<String, dynamic>;
 
-    return StrapiResponse(result, meta);
+    return StrapiResponse(data: result, meta: meta);
   }
 }
