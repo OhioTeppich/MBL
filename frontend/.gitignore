@@ -46,7 +46,7 @@ analysis_benchmark.json
 
 
 # environment var
-./assets/.env
+/assets/environment/
 
 # Flutter/Dart/Pub related
 **/doc/api/
