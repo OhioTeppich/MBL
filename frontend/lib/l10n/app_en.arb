@@ -2,5 +2,6 @@
   "helloWorld": "Hello World!",
   "home": "Home",
   "meditation": "Meditation",
-  "pilates": "Pilates"
+  "pilates": "Pilates",
+  "errorWidgetLabel": "Oops something went wrong"
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mbl/features/app/screen.model.dart';
 import 'package:mbl/features/home/home.widget.dart';
+import 'package:mbl/features/pilates/pilates_screen.widget.dart';
 import 'package:mbl/features/meditation/meditation-screen.widget.dart';
-import 'package:mbl/features/pilates/pilates-screen.widget.dart';
 
 class AppScreensService {
   final BuildContext context;
