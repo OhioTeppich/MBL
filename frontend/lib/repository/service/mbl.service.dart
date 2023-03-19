@@ -11,7 +11,7 @@ import 'package:mbl/utils/strapi_response_converter.dart';
 class MblService {
   MblService({http.Client? httpClient, String? baseUrl})
       : _httpClient = httpClient ?? http.Client(),
-        baseUrl = "http://${dotenv.get('HOST')}/api";
+        baseUrl = baseUrl ?? "http://${dotenv.get('HOST')}/api";
 
   final String baseUrl;
   final Client _httpClient;
