@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mbl/features/app/screen.model.dart';
 import 'package:mbl/features/home/home.widget.dart';
+import 'package:mbl/features/meditation/meditation-screen.widget.dart';
 import 'package:mbl/features/pilates/pilates-screen.widget.dart';
 
 class AppScreensService {
@@ -10,6 +11,7 @@ class AppScreensService {
   AppScreensService(this.context)
       : screens = [
           ScreenMetaData('Home', const HomePage()),
+          ScreenMetaData('Meditation', const MeditationScreen()),
           ScreenMetaData('Pilates', const PilatesScreen()),
         ];
 

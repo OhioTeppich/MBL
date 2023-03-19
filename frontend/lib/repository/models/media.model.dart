@@ -6,6 +6,6 @@ class Media {
   );
 
   final String? id;
-  final String? url;
+  final String url;
   final String? alternativeText;
 }
