@@ -5,13 +5,13 @@ class MeditationEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class GetMeditationExercises extends MeditationEvent{}
+class GetMeditation extends MeditationEvent{}
 
-class SelectMeditationExercises extends MeditationEvent {
-  SelectMeditationExercises({
+class SelectMeditation extends MeditationEvent {
+  SelectMeditation({
     required this.selected,
   });
-  final Media selected;
+  final Meditation selected;
 
   @override
   List<Object?> get props => [selected];

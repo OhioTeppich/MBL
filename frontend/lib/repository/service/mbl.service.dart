@@ -2,6 +2,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:mbl/repository/models/api_response.model.dart';
+import 'package:mbl/repository/models/meditation.model.dart';
 import 'package:mbl/repository/models/meta_data.model.dart';
 import 'package:mbl/repository/models/pilates.model.dart';
 import 'package:mbl/repository/models/result_error.dart';
@@ -53,7 +54,31 @@ class MblService {
     }
   }
 
-  dynamic getMeditations() {
-    // implement api call
+  Future<ApiResponse> getMeditations() async {
+    final response = await _httpClient.get(
+      getUrl(url: 'meditations'),
+    );
+
+    if (response.statusCode == 200) {
+      if (response.body.isNotEmpty) {
+        StrapiResponse convertedRepsonse =
+            StrapiResponseConverter.convert(response.body);
+
+        final List<Meditation> data = List<Meditation>.from(
+          convertedRepsonse.data.map(
+            (data) => Meditation.fromJson(data),
+          ),
+        );
+        final MetaData metaData = MetaData.fromJson(convertedRepsonse.meta);
+        final ApiResponse apiResponse =
+            ApiResponse<List<Meditation>>(data: data, metaData: metaData);
+
+        return apiResponse;
+      } else {
+        throw ErrorEmptyResponse();
+      }
+    } else {
+      throw ErrorGettingPilatesExercises('Error getting Meditation');
+    }
   }
 }

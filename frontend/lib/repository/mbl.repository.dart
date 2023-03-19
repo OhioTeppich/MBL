@@ -9,5 +9,6 @@ class MblRepository {
 
   Future<ApiResponse> getPilatesExercises() async =>
       service.getPilatesExercises();
-  Future<List<dynamic>> getMeditations() async => service.getMeditations();
+  Future<ApiResponse> getMeditations() async => 
+      service.getMeditations();
 }

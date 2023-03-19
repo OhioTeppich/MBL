@@ -25,7 +25,7 @@ class App extends StatelessWidget {
             BlocProvider<MeditationBloc>(
               create: (context) => MeditationBloc(
                 mblRepository: context.read<MblRepository>(),
-              )..add(GetMeditationExercises()),
+              )..add(GetMeditation()),
             ),
           ],
           child: const AppLayout(),

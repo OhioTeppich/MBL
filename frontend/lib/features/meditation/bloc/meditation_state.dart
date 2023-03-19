@@ -1,5 +1,6 @@
 part of 'meditation_bloc.dart';
 
+
 enum MeditationStatus { initial, success, error, loading, selected, fubar }
 
 extension MeditationX on MeditationStatus {
@@ -12,22 +13,27 @@ extension MeditationX on MeditationStatus {
 class MeditationState extends Equatable {
   MeditationState({
     this.status = MeditationStatus.initial,
-    List<Media>? medias,
-  })  : medias = medias ?? [];
+    List<Meditation>? meditations,
+    MetaData? metaData,
+  })  : meditations = meditations ?? [],
+        metaData = metaData ?? MetaData.empty;
 
-  final List<Media> medias;
+  final List<Meditation> meditations;
+  final MetaData metaData;
   final MeditationStatus status;
 
   @override
-  List<Object?> get props => [status, medias];
+  List<Object?> get props => [status, meditations];
 
   MeditationState copyWith({
-    List<Media>? medias,
+    List<Meditation>? meditations,
     MeditationStatus? status,
+    MetaData? metaData,
   }) {
     return MeditationState(
       status: status ?? this.status,
-      medias: medias ?? this.medias,
+      meditations: meditations ?? this.meditations,
+      metaData: metaData ?? this.metaData,
     );
   }
 }
