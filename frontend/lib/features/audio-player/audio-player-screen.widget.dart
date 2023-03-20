@@ -1,36 +1,16 @@
-import 'dart:math';
-
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:mbl/features/widget/custom_progress_bar.widget.dart';
+import 'package:mbl/repository/models/position_data.model.dart';
 import 'package:mbl/themes/themes.dart';
-import 'package:audio_session/audio_session.dart';
-import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
 
-/*class AudioPlayerScreen extends StatelessWidget {
-  const AudioPlayerScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: StandardColor.primary,
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          }, 
-          child: const Text('Back')),
-      ),
-    );
-  }
-}
-
-
-      */
-
 class AudioPlayerScreen extends StatefulWidget {
-  const AudioPlayerScreen({super.key});
+  const AudioPlayerScreen({super.key, required this.title, required this.speaker});
+
+  final String title;
+  final String speaker;
 
   @override
   State<AudioPlayerScreen> createState() => _AudioPlayerScreenState();
@@ -59,7 +39,7 @@ Stream<PositionData> get _positionDataStream =>
     _player.setAudioSource(
         AudioSource.uri(
           Uri.parse(
-            "https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3"
+            'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3'
           )
         )
       );
@@ -104,9 +84,12 @@ Stream<PositionData> get _positionDataStream =>
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const SizedBox(height: 500,),
           Container(
+            alignment: Alignment.bottomCenter,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
                color: StandardColor.textContrastColor),
@@ -122,9 +105,9 @@ Stream<PositionData> get _positionDataStream =>
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children:[
-                            Text('Yes to Life Meditation', style: StandardText.headline6,), // TODO: Fill with DATA
+                            Text(widget.title, style: StandardText.headline6,),
                             const SizedBox(height: 5,),
-                            Text('Danielle', style: StandardText.subtitle2,),
+                            Text(widget.speaker, style: StandardText.subtitle2,),
                           ],
                         ),
                         const Icon(Icons.favorite_border_outlined) // Nur zum Testzweck
@@ -138,7 +121,13 @@ Stream<PositionData> get _positionDataStream =>
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if(_player.position < const Duration(seconds: 10)){
+                            _player.seek(Duration.zero);
+                          } else {
+                            _player.seek(_player.position - const Duration(seconds: 10));
+                          } 
+                        },
                         icon: const Icon(Icons.replay_10_rounded),
                         iconSize: 60,
                       ),
@@ -152,12 +141,19 @@ Stream<PositionData> get _positionDataStream =>
                       ),
                       const SizedBox(width: 27,),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                         if(_player.position > _player.duration! - const Duration(seconds: 10)){
+                            _player.seek(_player.duration);
+                          } else {
+                            _player.seek(_player.position + const Duration(seconds: 10));
+                          } 
+                        },
                         icon: const Icon(Icons.forward_10_rounded),
                         iconSize: 60,
                       ),
                     ],
                   ),
+                  const SizedBox(height: 80,)
                 ],
               ),
             ),
@@ -167,15 +163,14 @@ Stream<PositionData> get _positionDataStream =>
     );
   }
 
-
 Widget _playerButton(PlayerState? playerState) {
   final processingState = playerState?.processingState;
   if  (processingState == ProcessingState.loading ||
        processingState == ProcessingState.buffering) {
         return Container(
           margin: const EdgeInsets.all(8.0),
-          width: 64.0,
-          height: 64.0,
+          width: 60.0,
+          height: 60.0,
           child: const CircularProgressIndicator(color: StandardColor.accentPrimaryButton,),
         );
        } else if (_player.playing != true) {
@@ -205,57 +200,8 @@ Widget _playerButton(PlayerState? playerState) {
           onPressed: () => _player.seek(Duration.zero,
           index: _player.effectiveIndices!.first), 
           icon: const Icon(Icons.replay),
-          iconSize: 64.0,
+          iconSize: 60.0,
           );
        }
   }
-
-}
-
-class CustomProgressBar extends StatelessWidget {
-  const CustomProgressBar({
-    super.key,
-    required Stream<PositionData> positionDataStream,
-    required AudioPlayer player,
-  }) : _positionDataStream = positionDataStream, _player = player;
-
-  final Stream<PositionData> _positionDataStream;
-  final AudioPlayer _player;
-
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<PositionData>(
-      stream: _positionDataStream,
-      builder: (context, snapshot) {
-        final positionData = snapshot.data;
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: ProgressBar(
-            barHeight: 2.0,
-            baseBarColor: StandardColor.strokeColor,
-            bufferedBarColor: StandardColor.secondaryStrokeColor,
-            progressBarColor: StandardColor.textColor,
-            thumbColor: StandardColor.textColor,
-            timeLabelTextStyle: StandardText.captionNormal,
-            progress: positionData?.position ?? Duration.zero,
-            buffered: positionData?.bufferedPosition ?? Duration.zero,
-            total: positionData?.duration ?? Duration.zero,
-            onSeek: _player.seek,
-          ),
-        );
-      },
-    );
-  }
-}
-
-class PositionData {
-  const PositionData(
-    this.position,
-    this.bufferedPosition,
-    this.duration,
-  );
-
-  final Duration position;
-  final Duration bufferedPosition;
-  final Duration duration;
 }

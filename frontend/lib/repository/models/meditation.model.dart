@@ -5,10 +5,11 @@ part 'meditation.model.g.dart';
 
 @JsonSerializable()
 class Meditation {
-  Meditation(this.id, this.title, this.length, this.video);
+  Meditation(this.id, this.title, this.length, this.video, this.speaker);
 
   final int? id;
   final String? title;
+  final String? speaker;
   final int? length;
   final Media? video;
 

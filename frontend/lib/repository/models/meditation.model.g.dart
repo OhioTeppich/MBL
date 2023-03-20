@@ -13,12 +13,14 @@ Meditation _$MeditationFromJson(Map<String, dynamic> json) => Meditation(
       json['video'] == null
           ? null
           : Media.fromJson(json['video'] as Map<String, dynamic>),
+      json['speaker'] as String?,
     );
 
 Map<String, dynamic> _$MeditationToJson(Meditation instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
+      'speaker': instance.speaker,
       'length': instance.length,
       'video': instance.video,
     };

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mbl/themes/themes.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
@@ -11,6 +12,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: StandardColor.secondary,
+      selectedItemColor: StandardColor.accent,
+      unselectedItemColor: StandardColor.textColor,
       items: [
         BottomNavigationBarItem(
           icon: const Icon(Icons.home),

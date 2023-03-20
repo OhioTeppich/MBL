@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/features/meditation/bloc/meditation_bloc.dart';
-import 'package:mbl/features/widget/list-item.widget.dart';
+import 'package:mbl/features/widget/audio_list_item.widget.dart';
 import 'package:mbl/themes/themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -23,17 +23,45 @@ class MeditationSuccess extends StatelessWidget {
           case MeditationStatus.success:
             return Scaffold(
             backgroundColor: StandardColor.primary,
-            body: /*ListView.builder(
-              itemCount: state.medias.length,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              title: Text('Meditation', style: StandardText.headline3.copyWith(color: StandardColor.headlineAccent),),
+              actions: <Widget>[
+                  GestureDetector(
+                    onTap: () {},
+                    child: const Icon(Icons.grid_view_rounded, color: StandardColor.accent,),
+                  ),
+                  const SizedBox(width: 5,),
+                  GestureDetector(
+                    onTap: () {},
+                    child: const Icon(Icons.list, color: StandardColor.textColor, size: 30,),
+                  ),
+                  const VerticalDivider(
+                    thickness: 1,
+                    indent: 15,
+                    endIndent: 15,
+                    color: StandardColor.strokeColor,
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: const Icon(Icons.filter_alt, color: StandardColor.accent,),
+                  ),
+              ],
+            ),
+            body: ListView.builder(
+              itemCount: state.meditations.length,
               itemBuilder: (BuildContext context, int index ) {
                 return Center(
-                  child: ListItem(itemName: 'List Item',),
+                  child: AudioListItem(
+                    itemName: state.meditations[index].title ?? 'Error',
+                    speaker: state.meditations[index].speaker ?? 'Error',
+                    //url: state.meditations[index].video?.url ?? 'Error',
+                    ),
                   );
                 }
-              ),*/
-            Center(child: ListItem(itemName: state.meditations.first.title ?? 'Error',),
-            ),
-          );
+              ),
+            );
          case MeditationStatus.error:
             return ErrorWidget(AppLocalizations.of(context)!.errorWidgetLabel);
           case MeditationStatus.initial:
