@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/features/pilates/bloc/pilates_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:mbl/features/widget/video_list_item.widget.dart';
+import 'package:mbl/features/video-player/video_player_screen.widget.dart';
+import 'package:mbl/features/widget/list_item.widget.dart';
 import 'package:mbl/themes/themes.dart';
 
 class PilatesSuccess extends StatelessWidget {
@@ -51,8 +52,10 @@ class PilatesSuccess extends StatelessWidget {
               itemCount: state.pilatesExercises.length,
               itemBuilder: (BuildContext context, int index ) {
                 return Center(
-                  child: VideoListItem(
+                  child: ListItem(
                     itemName: state.pilatesExercises[index].title ?? 'Error',
+                    icon: Icons.videocam,
+                    nextScreen: MaterialPageRoute(builder: (context) => const VideoPlayerScreen()),
                     //url: state.meditations[index].video?.url ?? 'Error',
                     ),
                   );

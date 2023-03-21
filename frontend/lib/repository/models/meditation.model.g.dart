@@ -10,10 +10,9 @@ Meditation _$MeditationFromJson(Map<String, dynamic> json) => Meditation(
       json['id'] as int?,
       json['title'] as String?,
       json['length'] as int?,
-      json['video'] == null
-          ? null
-          : Media.fromJson(json['video'] as Map<String, dynamic>),
+      Media.fromJson(json['audio'] as Map<String, dynamic>),
       json['speaker'] as String?,
+      Cover.fromJson(json['cover'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MeditationToJson(Meditation instance) =>
@@ -22,5 +21,6 @@ Map<String, dynamic> _$MeditationToJson(Meditation instance) =>
       'title': instance.title,
       'speaker': instance.speaker,
       'length': instance.length,
-      'video': instance.video,
+      'audio': instance.audio,
+      'cover': instance.cover,
     };

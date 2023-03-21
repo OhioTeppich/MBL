@@ -1,16 +1,26 @@
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:mbl/features/widget/custom_progress_bar.widget.dart';
+import 'package:mbl/features/audio-player/custom_progress_bar.widget.dart';
+import 'package:mbl/features/audio-player/player_button.widget.dart';
+import 'package:mbl/features/widget/media_app_bar.widget.dart';
 import 'package:mbl/repository/models/position_data.model.dart';
 import 'package:mbl/themes/themes.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
-  const AudioPlayerScreen({super.key, required this.title, required this.speaker});
+  const AudioPlayerScreen({
+    super.key,
+    required this.title,
+    required this.speaker,
+    required this.audioUrl,
+    required this.coverUrl,
+    });
 
   final String title;
   final String speaker;
+  final String audioUrl;
+  final String coverUrl;
 
   @override
   State<AudioPlayerScreen> createState() => _AudioPlayerScreenState();
@@ -34,17 +44,12 @@ Stream<PositionData> get _positionDataStream =>
  @override
   void initState() {
     super.initState();
+    init();    
+  }
+
+  void init() async {
     _player = AudioPlayer();
-
-    _player.setAudioSource(
-        AudioSource.uri(
-          Uri.parse(
-            'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3'
-          )
-        )
-      );
-
-    
+    await _player.setUrl("http://${dotenv.get('HOST')}${widget.audioUrl}");
   }
 
   @override
@@ -63,31 +68,14 @@ Stream<PositionData> get _positionDataStream =>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: StandardColor.primary,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leadingWidth: 90.0,
-        leading: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Row(
-              children: [
-                const Icon(Icons.arrow_back_ios, color: Colors.black, size: 16.0,),
-                const SizedBox(width: 3.0,),
-                Text('Back', style: StandardText.button,)
-              ],
-            ),
-          ),
-        ),
-      ),
+      appBar: const MediaAppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Image.network("http://${dotenv.get('HOST')}${widget.coverUrl}"),
+          const SizedBox(height: 30), // Hmmmm weg finden das Bild mittig zu machen
           Container(
             alignment: Alignment.bottomCenter,
             decoration: BoxDecoration(
@@ -110,7 +98,7 @@ Stream<PositionData> get _positionDataStream =>
                             Text(widget.speaker, style: StandardText.subtitle2,),
                           ],
                         ),
-                        const Icon(Icons.favorite_border_outlined) // Nur zum Testzweck
+                        const Icon(Icons.favorite_border_outlined)
                       ],
                     ),
                   ),
@@ -131,15 +119,15 @@ Stream<PositionData> get _positionDataStream =>
                         icon: const Icon(Icons.replay_10_rounded),
                         iconSize: 60,
                       ),
-                      const SizedBox(width: 27,),
+                      const SizedBox(width: 27),
                       StreamBuilder<PlayerState>(
                         stream: _player.playerStateStream,
                         builder: (context, snapshot) {
                           final playerState = snapshot.data;
-                          return _playerButton(playerState);
+                          return playerButton(playerState, _player);
                         }
                       ),
-                      const SizedBox(width: 27,),
+                      const SizedBox(width: 27),
                       IconButton(
                         onPressed: () {
                          if(_player.position > _player.duration! - const Duration(seconds: 10)){
@@ -161,47 +149,5 @@ Stream<PositionData> get _positionDataStream =>
         ],
       ),
     );
-  }
-
-Widget _playerButton(PlayerState? playerState) {
-  final processingState = playerState?.processingState;
-  if  (processingState == ProcessingState.loading ||
-       processingState == ProcessingState.buffering) {
-        return Container(
-          margin: const EdgeInsets.all(8.0),
-          width: 60.0,
-          height: 60.0,
-          child: const CircularProgressIndicator(color: StandardColor.accentPrimaryButton,),
-        );
-       } else if (_player.playing != true) {
-        return CircleAvatar(
-          radius: 37.0,
-          backgroundColor: StandardColor.accent,
-          child: IconButton(
-            onPressed: _player.play,
-            icon: const Icon(Icons.play_arrow_rounded),
-            iconSize: 60,
-            color: StandardColor.textColor,
-          ),
-        );
-       } else if (processingState != ProcessingState.completed) {
-        return CircleAvatar(
-          radius: 37.0,
-          backgroundColor: StandardColor.accent,
-          child: IconButton(
-            onPressed: _player.pause,
-            icon: const Icon(Icons.pause),
-            iconSize: 60,
-            color: StandardColor.textColor,
-          ),
-        );
-       } else {
-        return IconButton(
-          onPressed: () => _player.seek(Duration.zero,
-          index: _player.effectiveIndices!.first), 
-          icon: const Icon(Icons.replay),
-          iconSize: 60.0,
-          );
-       }
   }
 }

@@ -56,7 +56,7 @@ class MblService {
 
   Future<ApiResponse> getMeditations() async {
     final response = await _httpClient.get(
-      getUrl(url: 'meditations'),
+      getUrl(url: 'meditations?fields[0]=title&fields[1]=speaker&fields[2]=length&populate[audio][fields][0]=url&populate[audio][fields][1]=alternativeText&populate[cover][fields][0]=url'),
     );
 
     if (response.statusCode == 200) {

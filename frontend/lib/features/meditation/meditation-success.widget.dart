@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbl/features/audio-player/audio_player_screen.widget.dart';
 import 'package:mbl/features/meditation/bloc/meditation_bloc.dart';
-import 'package:mbl/features/widget/audio_list_item.widget.dart';
+import 'package:mbl/features/widget/list_item.widget.dart';
 import 'package:mbl/themes/themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 
 
@@ -53,10 +55,17 @@ class MeditationSuccess extends StatelessWidget {
               itemCount: state.meditations.length,
               itemBuilder: (BuildContext context, int index ) {
                 return Center(
-                  child: AudioListItem(
+                  child: ListItem(
                     itemName: state.meditations[index].title ?? 'Error',
-                    speaker: state.meditations[index].speaker ?? 'Error',
-                    //url: state.meditations[index].video?.url ?? 'Error',
+                    icon: Icons.mic,
+                    nextScreen: MaterialPageRoute(builder: (context) => AudioPlayerScreen(
+                      title: state.meditations[index].title ?? 'Error', 
+                      speaker: state.meditations[index].speaker ?? 'Error',
+                      audioUrl: state.meditations[index].audio.url ?? 'Error',
+                      coverUrl: state.meditations[index].cover.url ?? 'Error',
+                      ),
+                    ),
+                    //url: state.meditations[index].video?.url ?? 'Error',, speaker: speaker)
                     ),
                   );
                 }

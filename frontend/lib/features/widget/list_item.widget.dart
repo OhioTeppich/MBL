@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mbl/features/video-player/video_player_screen.widget.dart';
 import 'package:mbl/themes/themes.dart';
 
-class VideoListItem extends StatelessWidget {
-  const VideoListItem({
+class ListItem extends StatelessWidget {
+  const ListItem({
     super.key,
     required this.itemName,
+    required this.icon,
+    required this.nextScreen,
     //required this.url,
   });
 
   final String itemName;
+  final IconData icon;
+  final MaterialPageRoute nextScreen;
   //final String url;
 
   @override
@@ -17,9 +20,9 @@ class VideoListItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => VideoPlayerScreen()),
-      );
+          context,
+          nextScreen,
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -32,7 +35,7 @@ class VideoListItem extends StatelessWidget {
                   height: 27,
                   child: Row(
                     children: [
-                      const Icon(Icons.videocam),
+                      Icon(icon),
                       Container(width: 8.0),
                       Text(itemName ,style: StandardText.body1Bold,),
                     ],

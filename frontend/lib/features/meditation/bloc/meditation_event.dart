@@ -6,13 +6,3 @@ class MeditationEvent extends Equatable {
 }
 
 class GetMeditation extends MeditationEvent{}
-
-class SelectMeditation extends MeditationEvent {
-  SelectMeditation({
-    required this.selected,
-  });
-  final Meditation selected;
-
-  @override
-  List<Object?> get props => [selected];
-}

@@ -14,7 +14,6 @@ class MeditationBloc extends Bloc<MeditationEvent, MeditationState> {
     required this.mblRepository,
   }) : super(MeditationState()) {
     on<GetMeditation>(_mapGetMeditationEventToState);
-    //on<SelectMeditationExercises>(_mapSelectMeditationExerciseEventToState);
   }
   final MblRepository mblRepository;
 
@@ -34,13 +33,4 @@ class MeditationBloc extends Bloc<MeditationEvent, MeditationState> {
       emit(state.copyWith(status: MeditationStatus.error));
     }
   }
-/*
-  void _mapSelectMeditationExerciseEventToState(
-      SelectMeditationExercises event, Emitter<MeditationState> emit) async {
-    emit(
-      state.copyWith(
-        : event.selected,
-      ),
-    );
-  }*/
 }
