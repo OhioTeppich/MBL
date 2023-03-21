@@ -6,24 +6,20 @@ class ListItem extends StatelessWidget {
     super.key,
     required this.itemName,
     required this.icon,
-    required this.nextScreen,
+    required this.onTaped,
     //required this.url,
   });
 
   final String itemName;
   final IconData icon;
-  final MaterialPageRoute nextScreen;
+  final VoidCallback onTaped;
+
   //final String url;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          nextScreen,
-        );
-      },
+      onTap: onTaped,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(

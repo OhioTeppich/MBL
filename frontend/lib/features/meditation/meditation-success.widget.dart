@@ -58,13 +58,18 @@ class MeditationSuccess extends StatelessWidget {
                   child: ListItem(
                     itemName: state.meditations[index].title ?? 'Error',
                     icon: Icons.mic,
-                    nextScreen: MaterialPageRoute(builder: (context) => AudioPlayerScreen(
-                      title: state.meditations[index].title ?? 'Error', 
-                      speaker: state.meditations[index].speaker ?? 'Error',
-                      audioUrl: state.meditations[index].audio.url ?? 'Error',
-                      coverUrl: state.meditations[index].cover.url ?? 'Error',
-                      ),
-                    ),
+                    onTaped: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AudioPlayerScreen(
+                          title: state.meditations[index].title ?? 'Error', 
+                          speaker: state.meditations[index].speaker ?? 'Error',
+                          audioUrl: state.meditations[index].audio.url ?? 'Error',
+                          coverUrl: state.meditations[index].cover.url ?? 'Error',
+                          ),
+                        ),
+                      );
+                    },
                     //url: state.meditations[index].video?.url ?? 'Error',, speaker: speaker)
                     ),
                   );
