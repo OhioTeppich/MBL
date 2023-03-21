@@ -58,7 +58,9 @@ class PilatesSuccess extends StatelessWidget {
                     onTaped: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const VideoPlayerScreen(),
+                        MaterialPageRoute(builder: (context) => VideoPlayerScreen(
+                          title:  state.pilatesExercises[index].title ?? 'Error',
+                        ),
                         ),
                       );
                     },
