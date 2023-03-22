@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/features/audio-player/audio_player_screen.widget.dart';
 import 'package:mbl/features/meditation/bloc/meditation_bloc.dart';
 import 'package:mbl/features/widget/list_item.widget.dart';
+import 'package:mbl/features/widget/success_app_bar.widget.dart';
 import 'package:mbl/themes/themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -25,33 +26,7 @@ class MeditationSuccess extends StatelessWidget {
           case MeditationStatus.success:
             return Scaffold(
             backgroundColor: StandardColor.primary,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              title: Text('Meditation', style: StandardText.headline3.copyWith(color: StandardColor.headlineAccent),),
-              actions: <Widget>[
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Row(
-                      children: [
-                        Icon(Icons.grid_view_rounded, color: StandardColor.accent,),
-                        SizedBox(width: 5,),
-                        Icon(Icons.list, color: StandardColor.textColor, size: 30,),
-                      ],
-                    ),
-                  ),
-                  const VerticalDivider(
-                    thickness: 1,
-                    indent: 15,
-                    endIndent: 15,
-                    color: StandardColor.strokeColor,
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Icon(Icons.filter_alt, color: StandardColor.accent,),
-                  ),
-              ],
-            ),
+            appBar: const SuccessAppBar(title: 'Meditation',),
             body: ListView.builder(
               itemCount: state.meditations.length,
               itemBuilder: (BuildContext context, int index ) {
@@ -83,7 +58,6 @@ class MeditationSuccess extends StatelessWidget {
           default:
             return const Text('');
         }
-        
       },
     );
   }
