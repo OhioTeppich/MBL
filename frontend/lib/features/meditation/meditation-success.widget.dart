@@ -32,12 +32,13 @@ class MeditationSuccess extends StatelessWidget {
               actions: <Widget>[
                   GestureDetector(
                     onTap: () {},
-                    child: const Icon(Icons.grid_view_rounded, color: StandardColor.accent,),
-                  ),
-                  const SizedBox(width: 5,),
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Icon(Icons.list, color: StandardColor.textColor, size: 30,),
+                    child: const Row(
+                      children: [
+                        Icon(Icons.grid_view_rounded, color: StandardColor.accent,),
+                        SizedBox(width: 5,),
+                        Icon(Icons.list, color: StandardColor.textColor, size: 30,),
+                      ],
+                    ),
                   ),
                   const VerticalDivider(
                     thickness: 1,
@@ -58,19 +59,23 @@ class MeditationSuccess extends StatelessWidget {
                   child: ListItem(
                     itemName: state.meditations[index].title ?? 'Error',
                     icon: Icons.mic,
-                    nextScreen: MaterialPageRoute(builder: (context) => AudioPlayerScreen(
-                      title: state.meditations[index].title ?? 'Error', 
-                      speaker: state.meditations[index].speaker ?? 'Error',
-                      audioUrl: state.meditations[index].audio.url ?? 'Error',
-                      coverUrl: state.meditations[index].cover.url ?? 'Error',
-                      ),
-                    ),
-                    //url: state.meditations[index].video?.url ?? 'Error',, speaker: speaker)
-                    ),
-                  );
-                }
-              ),
-            );
+                    onTaped: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AudioPlayerScreen(
+                          title: state.meditations[index].title ?? 'Error', 
+                          speaker: state.meditations[index].speaker ?? 'Error',
+                          audioUrl: state.meditations[index].audio.url ?? 'Error',
+                          coverUrl: state.meditations[index].cover.url ?? 'Error',
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }
+            ),
+          );
          case MeditationStatus.error:
             return ErrorWidget(AppLocalizations.of(context)!.errorWidgetLabel);
           case MeditationStatus.initial:

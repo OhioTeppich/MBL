@@ -23,7 +23,9 @@ class CustomProgressBar extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: ProgressBar(
-            barHeight: 2.0,
+            barHeight: 4.0,
+            timeLabelPadding: 5.0,
+            thumbRadius: 6.0,
             baseBarColor: StandardColor.strokeColor,
             bufferedBarColor: StandardColor.secondaryStrokeColor,
             progressBarColor: StandardColor.textColor,

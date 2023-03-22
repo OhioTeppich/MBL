@@ -28,6 +28,7 @@ class AudioPlayerScreen extends StatefulWidget {
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
  late AudioPlayer _player;
+ late String _host;
   
 Stream<PositionData> get _positionDataStream =>
   Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
@@ -44,12 +45,13 @@ Stream<PositionData> get _positionDataStream =>
  @override
   void initState() {
     super.initState();
+    _host = dotenv.get('HOST');
     init();    
   }
 
   void init() async {
     _player = AudioPlayer();
-    await _player.setUrl("http://${dotenv.get('HOST')}${widget.audioUrl}");
+    await _player.setUrl('http://$_host${widget.audioUrl}');
   }
 
   @override
@@ -74,7 +76,7 @@ Stream<PositionData> get _positionDataStream =>
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Image.network("http://${dotenv.get('HOST')}${widget.coverUrl}"),
+          Image.network('http://$_host${widget.coverUrl}'),
           const SizedBox(height: 30), // Hmmmm weg finden das Bild mittig zu machen
           Container(
             alignment: Alignment.bottomCenter,
@@ -102,9 +104,9 @@ Stream<PositionData> get _positionDataStream =>
                       ],
                     ),
                   ),
-                  const SizedBox(height: 19.0,),
+                  const SizedBox(height: 15.0,),
                   CustomProgressBar(positionDataStream: _positionDataStream, player: _player),
-                  const SizedBox(height: 44.0,),
+                  const SizedBox(height: 20.0,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
