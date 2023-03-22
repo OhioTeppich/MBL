@@ -74,11 +74,13 @@ Stream<PositionData> get _positionDataStream =>
         final playerState = snapshot.data;
         if (playerState?.processingState == ProcessingState.loading ||
        playerState?.processingState == ProcessingState.buffering) {
-        return Container(
-          margin: const EdgeInsets.all(8.0),
-          width: 60.0,
-          height: 60.0,
-          child: const CircularProgressIndicator(color: StandardColor.accentPrimaryButton,),
+        return const Scaffold(
+          backgroundColor: StandardColor.primary,
+          body: Center(
+            child: CircularProgressIndicator(
+              color: StandardColor.accentPrimaryButton,
+            ),
+          ),
         );
         } else {
         return Scaffold(
