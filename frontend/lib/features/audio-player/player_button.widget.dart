@@ -4,15 +4,7 @@ import 'package:mbl/themes/themes.dart';
 
 Widget playerButton(PlayerState? playerState, AudioPlayer player) {
   final processingState = playerState?.processingState;
-  if  (processingState == ProcessingState.loading ||
-       processingState == ProcessingState.buffering) {
-        return Container(
-          margin: const EdgeInsets.all(8.0),
-          width: 60.0,
-          height: 60.0,
-          child: const CircularProgressIndicator(color: StandardColor.accentPrimaryButton,),
-        );
-       } else if (player.playing != true) {
+      if (player.playing != true) {
         return CircleAvatar(
           radius: 37.0,
           backgroundColor: StandardColor.accent,
