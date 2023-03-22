@@ -55,7 +55,15 @@ class PilatesSuccess extends StatelessWidget {
                   child: ListItem(
                     itemName: state.pilatesExercises[index].title ?? 'Error',
                     icon: Icons.videocam,
-                    nextScreen: MaterialPageRoute(builder: (context) => const VideoPlayerScreen()),
+                    onTaped: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => VideoPlayerScreen(
+                          title:  state.pilatesExercises[index].title ?? 'Error',
+                        ),
+                        ),
+                      );
+                    },
                     //url: state.meditations[index].video?.url ?? 'Error',
                     ),
                   );
