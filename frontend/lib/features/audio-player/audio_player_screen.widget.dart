@@ -139,8 +139,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                   Container(
                     alignment: Alignment.bottomCenter,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: StandardColor.textContrastColor),
+                      borderRadius: BorderRadius.circular(20),
+                      color: StandardColor.textContrastColor,
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 18.73),
                       child: Column(
@@ -167,7 +168,6 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                                     ),
                                   ],
                                 ),
-                                const Icon(Icons.favorite_border_outlined)
                               ],
                             ),
                           ),
@@ -175,8 +175,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                             height: 15.0,
                           ),
                           CustomProgressBar(
-                              positionDataStream: _positionDataStream,
-                              player: _player),
+                            positionDataStream: _positionDataStream,
+                            player: _player,
+                          ),
                           const SizedBox(
                             height: 20.0,
                           ),
@@ -215,9 +216,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 80,
-                          )
+                          const SizedBox(height: 80),
                         ],
                       ),
                     ),
