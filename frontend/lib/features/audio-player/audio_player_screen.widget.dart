@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:mbl/features/audio-player/custom_progress_bar.widget.dart';
-import 'package:mbl/features/audio-player/player_button.widget.dart';
+import 'package:mbl/features/audio-player/blur_image.widget.dart';
+import 'package:mbl/features/audio-player/control_area.widget.dart';
 import 'package:mbl/features/widget/media_app_bar.widget.dart';
 import 'package:mbl/repository/models/position_data.model.dart';
 import 'package:mbl/themes/themes.dart';
@@ -107,120 +107,16 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      Center(
-                        child: Container(
-                          width: 370,
-                          height: 370,
-                          decoration: BoxDecoration(
-                            color: colors.color.withOpacity(0.75),
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ),
-                      BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: 30.0,
-                          sigmaY: 30.0,
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: colors.color.withOpacity(0.75),
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ),
-                      Image.network('http://$_host${widget.coverUrl}'),
-                    ],
+                  BlurImage(
+                    colors: colors,
+                    image: image,
                   ),
                   const SizedBox(height: 30),
-                  Container(
-                    alignment: Alignment.bottomCenter,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: StandardColor.textContrastColor,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 18.73),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      widget.title,
-                                      style: StandardText.headline6,
-                                    ),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Text(
-                                      widget.speaker,
-                                      style: StandardText.subtitle2,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 15.0,
-                          ),
-                          CustomProgressBar(
-                            positionDataStream: _positionDataStream,
-                            player: _player,
-                          ),
-                          const SizedBox(
-                            height: 20.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  if (_player.position <
-                                      const Duration(seconds: 10)) {
-                                    _player.seek(Duration.zero);
-                                  } else {
-                                    _player.seek(_player.position -
-                                        const Duration(seconds: 10));
-                                  }
-                                },
-                                icon: const Icon(Icons.replay_10_rounded),
-                                iconSize: 60,
-                              ),
-                              const SizedBox(width: 27),
-                              playerButton(playerState, _player),
-                              const SizedBox(width: 27),
-                              IconButton(
-                                onPressed: () {
-                                  if (_player.position >
-                                      _player.duration! -
-                                          const Duration(seconds: 10)) {
-                                    _player.seek(_player.duration);
-                                  } else {
-                                    _player.seek(_player.position +
-                                        const Duration(seconds: 10));
-                                  }
-                                },
-                                icon: const Icon(Icons.forward_10_rounded),
-                                iconSize: 60,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 80),
-                        ],
-                      ),
-                    ),
-                  ),
+                  ControlArea(
+                      widget: widget,
+                      positionDataStream: _positionDataStream,
+                      player: _player,
+                      playerState: playerState),
                 ],
               ),
             );
