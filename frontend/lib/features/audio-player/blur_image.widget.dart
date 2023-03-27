@@ -15,12 +15,15 @@ class BlurImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width / 1.2;
+    final filterStrength = screenWidth * 0.1;
+
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
         Container(
-          width: 370,
-          height: 370,
+          width: screenWidth,
+          height: screenWidth,
           decoration: BoxDecoration(
             color: colors.color.withOpacity(0.75),
             shape: BoxShape.circle,
@@ -28,8 +31,8 @@ class BlurImage extends StatelessWidget {
         ),
         BackdropFilter(
           filter: ImageFilter.blur(
-            sigmaX: 30.0,
-            sigmaY: 30.0,
+            sigmaX: filterStrength,
+            sigmaY: filterStrength,
           ),
           child: Container(
             decoration: BoxDecoration(
@@ -38,7 +41,12 @@ class BlurImage extends StatelessWidget {
             ),
           ),
         ),
-        Image.network(image),
+        Image.network(
+          image,
+          width: screenWidth,
+          height: screenWidth,
+          fit: BoxFit.cover,
+        ),
       ],
     );
   }

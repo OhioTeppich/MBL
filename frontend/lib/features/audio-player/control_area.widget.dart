@@ -83,7 +83,7 @@ class ControlArea extends StatelessWidget {
                   iconSize: 60,
                 ),
                 const SizedBox(width: 27),
-                playerButton(playerState, _player),
+                PlayerButton(playerState: playerState, player: _player),
                 const SizedBox(width: 27),
                 IconButton(
                   onPressed: () {

@@ -84,6 +84,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final centerImage = (MediaQuery.of(context).size.height / 14.0);
     return StreamBuilder<PlayerState>(
         stream: _player.playerStateStream,
         builder: (context, snapshot) {
@@ -107,11 +108,13 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  BlurImage(
-                    colors: colors,
-                    image: image,
+                  Padding(
+                    padding: EdgeInsets.only(bottom: centerImage),
+                    child: BlurImage(
+                      colors: colors,
+                      image: image,
+                    ),
                   ),
-                  const SizedBox(height: 30),
                   ControlArea(
                       widget: widget,
                       positionDataStream: _positionDataStream,
