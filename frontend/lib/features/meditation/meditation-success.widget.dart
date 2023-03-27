@@ -37,11 +37,11 @@ class MeditationSuccess extends StatelessWidget {
                     onTap: () {
                       context.read<MeditationCubit>().switchState();
                     },
-                    child: BlocBuilder<MeditationCubit, bool>(
+                    child: BlocBuilder<MeditationCubit, MeditationState>(
                       builder: (context, state) {
                         return Row(
                           children: [
-                            state
+                            state.view
                                 ? const ListViewIcons(
                                     grid: StandardColor.textColor,
                                     list: StandardColor.accent,
@@ -70,9 +70,9 @@ class MeditationSuccess extends StatelessWidget {
                   ),
                 ],
               ),
-              body: BlocBuilder<MeditationCubit, bool>(
+              body: BlocBuilder<MeditationCubit, MeditationState>(
                 builder: (context, state) {
-                  return state
+                  return state.view
                       ? const Text('Grid View')
                       : const Text('List View');
                 },

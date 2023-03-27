@@ -16,25 +16,29 @@ class PilatesState extends Equatable {
     this.status = PilatesStatus.initial,
     List<PilatesExercise>? pilatesExercises,
     MetaData? metaData,
+    this.view = false,
   })  : pilatesExercises = pilatesExercises ?? [],
         metaData = metaData ?? MetaData.empty;
 
   final List<PilatesExercise> pilatesExercises;
   final MetaData metaData;
   final PilatesStatus status;
+  final bool view;
 
   @override
-  List<Object?> get props => [status, pilatesExercises];
+  List<Object?> get props => [status, pilatesExercises, view];
 
   PilatesState copyWith({
     List<PilatesExercise>? pilatesExercises,
     PilatesStatus? status,
     MetaData? metaData,
+    bool? view,
   }) {
     return PilatesState(
       status: status ?? this.status,
       pilatesExercises: pilatesExercises ?? this.pilatesExercises,
       metaData: metaData ?? this.metaData,
+      view: view ?? this.view,
     );
   }
 }

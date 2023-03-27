@@ -34,11 +34,11 @@ class PilatesSuccess extends StatelessWidget {
                     onTap: () {
                       context.read<PilatesCubit>().switchState();
                     },
-                    child: BlocBuilder<PilatesCubit, bool>(
+                    child: BlocBuilder<PilatesCubit, PilatesState>(
                       builder: (context, state) {
                         return Row(
                           children: [
-                            state
+                            state.view
                                 ? const ListViewIcons(
                                     grid: StandardColor.accent,
                                     list: StandardColor.textColor,
@@ -67,9 +67,9 @@ class PilatesSuccess extends StatelessWidget {
                   ),
                 ],
               ),
-              body: BlocBuilder<PilatesCubit, bool>(
+              body: BlocBuilder<PilatesCubit, PilatesState>(
                 builder: (context, state) {
-                  return state
+                  return state.view
                       ? const Text('List View')
                       : const Text('Grid View');
                 },
