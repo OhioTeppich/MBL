@@ -1,5 +1,5 @@
-import 'package:mbl/repository/models/media.model.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mbl/repository/models/media.model.dart';
 
 part 'pilates.model.g.dart';
 

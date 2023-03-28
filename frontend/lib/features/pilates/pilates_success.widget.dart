@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/features/pilates/bloc/pilates_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mbl/l10n/l10n.dart';
 
 class PilatesSuccess extends StatelessWidget {
   const PilatesSuccess({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BlocBuilder<PilatesBloc, PilatesState>(
       builder: (context, state) {
         switch (state.status) {
@@ -16,10 +17,9 @@ class PilatesSuccess extends StatelessWidget {
               child: Text('loading'),
             );
           case PilatesStatus.success:
-            return Center(
-                child: Text(state.pilatesExercises.first.title ?? 'Error'));
+            return Column();
           case PilatesStatus.error:
-            return ErrorWidget(AppLocalizations.of(context)!.errorWidgetLabel);
+            return Text(l10n.errorWidgetLabel);
           case PilatesStatus.initial:
             return const Text('');
           default:

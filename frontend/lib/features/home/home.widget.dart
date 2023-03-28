@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:mbl/l10n/l10n.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,8 +11,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Center(
-      child: Text(AppLocalizations.of(context)!.helloWorld),
+      child: Text(l10n.home),
     );
   }
 }
