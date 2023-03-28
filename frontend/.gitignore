@@ -144,4 +144,4 @@ app.*.map.json
 **/linux/flutter/generated_plugins.cmake
 [21:25]
 # environment var
-/assets/environment/
+/assets/environment/*
