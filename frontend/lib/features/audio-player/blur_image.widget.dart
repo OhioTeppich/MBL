@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:palette_generator/palette_generator.dart';
 
@@ -21,13 +19,15 @@ class BlurImage extends StatelessWidget {
       alignment: Alignment.center,
       children: <Widget>[
         Container(
-          decoration: BoxDecoration(boxShadow: [
-            BoxShadow(
-              color: colors.color,
-              spreadRadius: 30,
-              blurRadius: 40,
-            ),
-          ]),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: colors.color,
+                blurRadius: 100,
+              ),
+            ],
+            shape: BoxShape.circle,
+          ),
           child: Image.network(
             image,
             width: screenWidth,

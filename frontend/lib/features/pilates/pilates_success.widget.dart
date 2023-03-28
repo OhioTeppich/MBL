@@ -25,7 +25,8 @@ class PilatesSuccess extends StatelessWidget {
                             speaker: 'speaker',
                             audioUrl:
                                 'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3',
-                            coverUrl: 'https://via.placeholder.com/400/400')));
+                            coverUrl:
+                                'http://192.168.178.41:1337/uploads/MBL_circle_only_1_b38693f243.png')));
               },
             );
           case PilatesStatus.success:
@@ -42,7 +43,7 @@ class PilatesSuccess extends StatelessWidget {
                               audioUrl:
                                   'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3',
                               coverUrl:
-                                  'https://via.placeholder.com/400/400')));
+                                  'http://192.168.178.41:1337/uploads/MBL_circle_only_1_b38693f243.png')));
                 },
               ),
             );
