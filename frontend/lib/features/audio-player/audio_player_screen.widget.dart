@@ -8,6 +8,7 @@ import 'package:mbl/features/shared/media_app_bar.widget.dart';
 import 'package:mbl/themes/themes.dart';
 import 'package:palette_generator/palette_generator.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:flutter/services.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
   const AudioPlayerScreen({
@@ -85,6 +86,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     final centerImage = (MediaQuery.of(context).size.height / 14.0);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return StreamBuilder<PlayerState>(
         stream: _player.playerStateStream,
         builder: (context, snapshot) {
