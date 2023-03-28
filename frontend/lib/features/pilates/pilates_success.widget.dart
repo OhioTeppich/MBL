@@ -17,7 +17,8 @@ class PilatesSuccess extends StatelessWidget {
               child: Text('loading'),
             );
           case PilatesStatus.success:
-            return Column();
+            return Center(
+                child: Text(state.pilatesExercises.first.title ?? 'Error'));
           case PilatesStatus.error:
             return Text(l10n.errorWidgetLabel);
           case PilatesStatus.initial:
