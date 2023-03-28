@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:mbl/features/app/app_layout.widget.dart';
+import 'package:mbl/features/audio-player/cubit/audio_player_cubit.dart';
 import 'package:mbl/features/meditation/bloc/meditation_bloc.dart';
 import 'package:mbl/features/pilates/bloc/pilates_bloc.dart';
 import 'package:mbl/repository/mbl.repository.dart';

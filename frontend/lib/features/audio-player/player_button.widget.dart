@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:mbl/features/audio-player/cubit/audio_player_cubit.dart';
 import 'package:mbl/themes/themes.dart';
 
 class PlayerButton extends StatelessWidget {
@@ -22,10 +20,7 @@ class PlayerButton extends StatelessWidget {
         radius: 37.0,
         backgroundColor: StandardColor.accent,
         child: IconButton(
-          onPressed: () {
-            //context.read<AudioPlayerCubit>().playAudio();
-            player.play();
-          },
+          onPressed: player.play,
           icon: const Icon(Icons.play_arrow_rounded),
           iconSize: 60,
           color: StandardColor.textColor,

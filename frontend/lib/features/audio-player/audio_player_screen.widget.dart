@@ -1,10 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mbl/features/audio-player/blur_image.widget.dart';
 import 'package:mbl/features/audio-player/control_area.widget.dart';
+import 'package:mbl/features/audio-player/cubit/audio_player_cubit.dart';
 import 'package:mbl/features/widget/media_app_bar.widget.dart';
 import 'package:mbl/repository/models/position_data.model.dart';
 import 'package:mbl/themes/themes.dart';
@@ -85,45 +85,48 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     final centerImage = (MediaQuery.of(context).size.height / 14.0);
-    return StreamBuilder<PlayerState>(
-        stream: _player.playerStateStream,
-        builder: (context, snapshot) {
-          final playerState = snapshot.data;
-          if (playerState?.processingState == ProcessingState.loading ||
-              playerState?.processingState == ProcessingState.buffering) {
-            return const Scaffold(
-              backgroundColor: StandardColor.primary,
-              body: Center(
-                child: CircularProgressIndicator(
-                  color: StandardColor.accentPrimaryButton,
-                ),
-              ),
-            );
-          } else {
-            return Scaffold(
-              backgroundColor: StandardColor.primary,
-              appBar: const MediaAppBar(),
-              body: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: centerImage),
-                    child: BlurImage(
-                      colors: colors,
-                      image: image,
-                    ),
+    return BlocProvider<AudioPlayerCubit>(
+      create: (_) => AudioPlayerCubit(AudioPlayer()),
+      child: StreamBuilder<PlayerState>(
+          stream: _player.playerStateStream,
+          builder: (context, snapshot) {
+            final playerState = snapshot.data;
+            if (playerState?.processingState == ProcessingState.loading ||
+                playerState?.processingState == ProcessingState.buffering) {
+              return const Scaffold(
+                backgroundColor: StandardColor.primary,
+                body: Center(
+                  child: CircularProgressIndicator(
+                    color: StandardColor.accentPrimaryButton,
                   ),
-                  ControlArea(
-                      widget: widget,
-                      positionDataStream: _positionDataStream,
-                      player: _player,
-                      playerState: playerState),
-                ],
-              ),
-            );
-          }
-        });
+                ),
+              );
+            } else {
+              return Scaffold(
+                backgroundColor: StandardColor.primary,
+                appBar: const MediaAppBar(),
+                body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: centerImage),
+                      child: BlurImage(
+                        colors: colors,
+                        image: image,
+                      ),
+                    ),
+                    ControlArea(
+                        widget: widget,
+                        positionDataStream: _positionDataStream,
+                        player: _player,
+                        playerState: playerState),
+                  ],
+                ),
+              );
+            }
+          }),
+    );
   }
 }

@@ -16,14 +16,15 @@ class BlurImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width / 1.2;
+    final blurWidth = screenWidth / 1.1;
     final filterStrength = screenWidth * 0.1;
 
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
         Container(
-          width: screenWidth,
-          height: screenWidth,
+          width: blurWidth,
+          height: blurWidth,
           decoration: BoxDecoration(
             color: colors.color.withOpacity(0.75),
             shape: BoxShape.circle,
