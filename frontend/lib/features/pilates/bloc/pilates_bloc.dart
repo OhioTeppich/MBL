@@ -13,6 +13,7 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
     required this.mblRepository,
   }) : super(PilatesState()) {
     on<GetPilatesExercises>(_mapGetPilatesExercisesEventToState);
+    on<ToggleViewMode>(_mapToogleViewModeEventToState);
   }
   final MblRepository mblRepository;
 
@@ -31,5 +32,11 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
     } catch (error) {
       emit(state.copyWith(status: PilatesStatus.error));
     }
+  }
+
+  void _mapToogleViewModeEventToState(
+      ToggleViewMode event, Emitter<PilatesState> emit) async {
+    emit(state.copyWith(
+        viewMode: event.viewMode, status: PilatesStatus.success));
   }
 }

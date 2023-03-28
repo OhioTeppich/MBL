@@ -14,29 +14,29 @@ class MeditationState extends Equatable {
     this.status = MeditationStatus.initial,
     List<Meditation>? meditations,
     MetaData? metaData,
-    this.view = false,
+    this.viewMode = false,
   })  : meditations = meditations ?? [],
         metaData = metaData ?? MetaData.empty;
 
   final List<Meditation> meditations;
   final MetaData metaData;
   final MeditationStatus status;
-  final bool view;
+  final bool viewMode;
 
   @override
-  List<Object?> get props => [status, meditations, view];
+  List<Object?> get props => [status, meditations, viewMode];
 
   MeditationState copyWith({
     List<Meditation>? meditations,
     MeditationStatus? status,
     MetaData? metaData,
-    bool? view,
+    bool? viewMode,
   }) {
     return MeditationState(
       status: status ?? this.status,
       meditations: meditations ?? this.meditations,
       metaData: metaData ?? this.metaData,
-      view: view ?? this.view,
+      viewMode: viewMode ?? this.viewMode,
     );
   }
 }

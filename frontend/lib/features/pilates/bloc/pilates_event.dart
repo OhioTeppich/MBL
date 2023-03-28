@@ -6,3 +6,12 @@ class PilatesEvent extends Equatable {
 }
 
 class GetPilatesExercises extends PilatesEvent {}
+
+class ToggleViewMode extends PilatesEvent {
+  ToggleViewMode(this.viewMode);
+
+  final bool viewMode;
+
+  @override
+  List<Object?> get props => [viewMode];
+}

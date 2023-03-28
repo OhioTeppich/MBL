@@ -5,4 +5,13 @@ class MeditationEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class GetMeditation extends MeditationEvent{}
+class GetMeditation extends MeditationEvent {}
+
+class ToggleViewMode extends MeditationEvent {
+  ToggleViewMode(this.viewMode);
+
+  final bool viewMode;
+
+  @override
+  List<Object?> get props => [viewMode];
+}
