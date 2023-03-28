@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mbl/repository/mbl.repository.dart';
+
 import 'package:equatable/equatable.dart';
+import 'package:mbl/repository/mbl.repository.dart';
 import 'package:mbl/repository/models/api_response.model.dart';
 import 'package:mbl/repository/models/meta_data.model.dart';
 import 'package:mbl/repository/models/pilates.model.dart';
@@ -13,6 +14,7 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
     required this.mblRepository,
   }) : super(PilatesState()) {
     on<GetPilatesExercises>(_mapGetPilatesExercisesEventToState);
+    on<ToggleViewMode>(_mapToggleViewModeEventToState);
   }
   final MblRepository mblRepository;
 
@@ -31,5 +33,11 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
     } catch (error) {
       emit(state.copyWith(status: PilatesStatus.error));
     }
+  }
+
+  void _mapToggleViewModeEventToState(
+      ToggleViewMode event, Emitter<PilatesState> emit) async {
+    emit(state.copyWith(
+        viewMode: event.viewMode, status: PilatesStatus.success));
   }
 }

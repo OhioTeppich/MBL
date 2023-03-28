@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_single_quotes
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mbl/repository/models/strapi_response.model.dart';
 import 'package:mbl/utils/strapi_response_converter.dart';

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:mbl/repository/models/api_response.model.dart';
 import 'package:mbl/repository/models/meta_data.model.dart';
 import 'package:mbl/repository/models/pilates.model.dart';
-import 'package:mbl/repository/models/result_error.dart';
+import 'package:mbl/repository/models/result_error.model.dart';
 import 'package:mbl/repository/models/strapi_response.model.dart';
 import 'package:mbl/utils/strapi_response_converter.dart';
 
