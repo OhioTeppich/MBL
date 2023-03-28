@@ -22,7 +22,7 @@ class PilatesSuccess extends StatelessWidget {
             return Scaffold(
               backgroundColor: StandardColor.primary,
               appBar: CollectionHeader(
-                title: 'Meditation',
+                title: 'Pilates',
                 listGridSwitchSettings: ListGridSwitchSettings(
                   (viewMode) {
                     context.read<PilatesBloc>().add(ToggleViewMode(viewMode));
