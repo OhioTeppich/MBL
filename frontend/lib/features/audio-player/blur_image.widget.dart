@@ -6,33 +6,40 @@ class BlurImage extends StatelessWidget {
     super.key,
     required this.colors,
     required this.image,
+    required this.screenWidth,
   });
 
   final PaletteColor colors;
   final String image;
+  final double screenWidth;
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width / 1.2;
-
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: colors.color,
-                blurRadius: 100,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.01),
+          child: AspectRatio(
+            aspectRatio: 4 / 3,
+            child: Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: colors.color,
+                    blurRadius: 100,
+                    spreadRadius: 10,
+                  ),
+                ],
+                shape: BoxShape.circle,
               ),
-            ],
-            shape: BoxShape.circle,
-          ),
-          child: Image.network(
-            image,
-            width: screenWidth,
-            height: screenWidth,
-            fit: BoxFit.cover,
+              child: Image.network(
+                image,
+                // width: screenWidth,
+                //height: screenWidth,
+                //fit: BoxFit.cover,
+              ),
+            ),
           ),
         ),
       ],

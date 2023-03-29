@@ -85,7 +85,11 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final centerImage = (MediaQuery.of(context).size.height / 14.0);
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final appBarHeight = screenHeight / 10;
+    final controlAreaHeight = screenHeight / 3;
+    final centerImage = screenHeight / 15;
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -107,24 +111,29 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
           } else {
             return Scaffold(
               backgroundColor: StandardColor.primary,
-              appBar: const MediaAppBar(),
+              appBar: MediaAppBar(getPreferredSize: appBarHeight),
               body: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(bottom: centerImage),
+                    padding: EdgeInsets.only(top: centerImage),
                     child: BlurImage(
                       colors: colors,
                       image: image,
+                      screenWidth: screenWidth,
                     ),
                   ),
-                  ControlArea(
-                      widget: widget,
-                      positionDataStream: _positionDataStream,
-                      player: _player,
-                      playerState: playerState),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ControlArea(
+                        widget: widget,
+                        positionDataStream: _positionDataStream,
+                        player: _player,
+                        playerState: playerState,
+                        controlAreaHeight: controlAreaHeight,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             );

@@ -13,6 +13,7 @@ class ControlArea extends StatelessWidget {
     required Stream<PositionData> positionDataStream,
     required AudioPlayer player,
     required this.playerState,
+    required this.controlAreaHeight,
   })  : _positionDataStream = positionDataStream,
         _player = player;
 
@@ -20,10 +21,12 @@ class ControlArea extends StatelessWidget {
   final Stream<PositionData> _positionDataStream;
   final AudioPlayer _player;
   final PlayerState? playerState;
+  final double controlAreaHeight;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: controlAreaHeight,
       alignment: Alignment.bottomCenter,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -44,9 +47,6 @@ class ControlArea extends StatelessWidget {
                       Text(
                         widget.title,
                         style: StandardText.headline6,
-                      ),
-                      const SizedBox(
-                        height: 5,
                       ),
                       Text(
                         widget.speaker,
@@ -82,9 +82,13 @@ class ControlArea extends StatelessWidget {
                   icon: const Icon(Icons.replay_10_rounded),
                   iconSize: 60,
                 ),
-                const SizedBox(width: 27),
+                const SizedBox(
+                  width: 27.0,
+                ),
                 PlayerButton(playerState: playerState, player: _player),
-                const SizedBox(width: 27),
+                const SizedBox(
+                  width: 27.0,
+                ),
                 IconButton(
                   onPressed: () {
                     if (_player.position >
@@ -100,7 +104,6 @@ class ControlArea extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 80),
           ],
         ),
       ),

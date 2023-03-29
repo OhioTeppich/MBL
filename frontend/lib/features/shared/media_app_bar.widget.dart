@@ -4,10 +4,13 @@ import 'package:mbl/themes/themes.dart';
 class MediaAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MediaAppBar({
     super.key,
+    required this.getPreferredSize,
   });
 
+  final double getPreferredSize;
+
   @override
-  Size get preferredSize => const Size.fromHeight(60);
+  Size get preferredSize => Size.fromHeight(getPreferredSize);
 
   @override
   Widget build(BuildContext context) {
