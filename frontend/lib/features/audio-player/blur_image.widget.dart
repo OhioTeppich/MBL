@@ -35,9 +35,6 @@ class BlurImage extends StatelessWidget {
               ),
               child: Image.network(
                 image,
-                // width: screenWidth,
-                //height: screenWidth,
-                //fit: BoxFit.cover,
               ),
             ),
           ),
