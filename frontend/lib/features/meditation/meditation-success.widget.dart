@@ -15,38 +15,55 @@ class MeditationSuccess extends StatelessWidget {
     final l10n = context.l10n;
     return BlocBuilder<MeditationBloc, MeditationState>(
       builder: (context, state) {
-        return Scaffold(
-          backgroundColor: StandardColor.primary,
-          appBar: CollectionHeader(
-            title: l10n.meditation,
-            listGridSwitchSettings: ListGridSwitchSettings(
-              (viewMode) {
-                context.read<MeditationBloc>().add(ToggleViewMode(viewMode));
-              },
-              state.viewMode,
-            ),
-          ),
-          body: Center(
-            child: ElevatedButton(
-              child: const Text('AudioPlayer'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AudioPlayerScreen(
-                      title: 'title',
-                      speaker: 'speaker',
-                      audioUrl:
-                          'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3',
-                      coverUrl:
-                          'http://192.168.178.41:1337/uploads/MBL_circle_only_1_b38693f243.png',
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        );
+        switch (state.status) {
+          case MeditationStatus.loading:
+            return const Center(
+              child: CircularProgressIndicator(
+                color: StandardColor.accentPrimaryButton,
+              ),
+            );
+          case MeditationStatus.success:
+            return Scaffold(
+              backgroundColor: StandardColor.primary,
+              appBar: CollectionHeader(
+                title: l10n.meditation,
+                listGridSwitchSettings: ListGridSwitchSettings(
+                  (viewMode) {
+                    context
+                        .read<MeditationBloc>()
+                        .add(ToggleViewMode(viewMode));
+                  },
+                  state.viewMode,
+                ),
+              ),
+              body: Center(
+                child: ElevatedButton(
+                  child: const Text('AudioPlayer'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AudioPlayerScreen(
+                          title: 'title',
+                          speaker: 'speaker',
+                          audioUrl:
+                              'https://s3.amazonaws.com/scifri-episodes/scifri20181123-episode.mp3',
+                          coverUrl:
+                              'http://192.168.178.41:1337/uploads/MBL_circle_only_1_b38693f243.png',
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          case MeditationStatus.error:
+            return ErrorWidget(l10n.errorWidgetLabel);
+          case MeditationStatus.initial:
+            return const Text('');
+          default:
+            return const Text('');
+        }
       },
     );
   }
