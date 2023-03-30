@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbl/features/meditation/bloc/meditation_bloc.dart';
 import 'package:mbl/features/navigation/cubit/navigation_cubit.dart';
 import 'package:mbl/features/navigation/navigation.widget.dart';
 import 'package:mbl/features/pilates/bloc/pilates_bloc.dart';
@@ -25,6 +26,11 @@ class App extends StatelessWidget {
                 create: (context) => PilatesBloc(
                   mblRepository: context.read<MblRepository>(),
                 )..add(GetPilatesExercises()),
+              ),
+              BlocProvider<MeditationBloc>(
+                create: (context) => MeditationBloc(
+                  mblRepository: context.read<MblRepository>(),
+                )..add(GetMeditation()),
               ),
               BlocProvider(create: (context) => NavigationCubit()),
             ],
