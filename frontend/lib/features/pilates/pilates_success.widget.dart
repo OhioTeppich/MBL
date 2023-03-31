@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/features/pilates/bloc/pilates_bloc.dart';
-import 'package:mbl/features/shared/collection_header.widget.dart';
+import 'package:mbl/features/shared/collection/collection.widget.dart';
+import 'package:mbl/features/shared/collection/collection_header.widget.dart';
+import 'package:mbl/features/shared/collection/collection_item.settings.model.dart';
 import 'package:mbl/features/shared/list_grid_switch/list_grid_switch.settings.dart';
 import 'package:mbl/l10n/l10n.dart';
 import 'package:mbl/themes/themes.dart';
@@ -33,7 +35,22 @@ class PilatesSuccess extends StatelessWidget {
                   state.viewMode,
                 ),
               ),
-              body: Column(),
+              body: Collection(
+                items: List.from(
+                  state.pilatesExercises.map(
+                    (item) => CollectionItemModel(
+                      item.title,
+                      Icons.videocam,
+                      () {
+                        // context.read<PilatesBloc>().add( navigate to audio or video player );
+                      },
+                    ),
+                  ),
+                ),
+                loadMoreCallback: () {
+                  // context.read<PilatesBloc>().add( call load more event );
+                },
+              ),
             );
           case PilatesStatus.error:
             return Text(l10n.errorWidgetLabel);

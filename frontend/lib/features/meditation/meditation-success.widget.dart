@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/features/audio-player/audio_player_screen.widget.dart';
 import 'package:mbl/features/meditation/bloc/meditation_bloc.dart';
-import 'package:mbl/features/shared/collection_header.widget.dart';
+import 'package:mbl/features/shared/collection/collection_header.widget.dart';
 import 'package:mbl/features/shared/list_grid_switch/list_grid_switch.settings.dart';
 import 'package:mbl/l10n/l10n.dart';
 import 'package:mbl/themes/themes.dart';
