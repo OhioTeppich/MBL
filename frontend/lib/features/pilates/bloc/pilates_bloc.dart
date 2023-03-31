@@ -22,14 +22,31 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
       GetPilatesExercises event, Emitter<PilatesState> emit) async {
     emit(state.copyWith(status: PilatesStatus.loading));
     try {
-      final ApiResponse apiResponse = await mblRepository.getPilatesExercises();
-      emit(
-        state.copyWith(
-          status: PilatesStatus.success,
-          pilatesExercises: apiResponse.data,
-          metaData: apiResponse.metaData,
-        ),
-      );
+      if (state.status == PilatesStatus.initial) {
+        final ApiResponse apiResponse =
+            await mblRepository.getPilatesExercises(0);
+        return emit(
+          state.copyWith(
+            status: PilatesStatus.success,
+            pilatesExercises: apiResponse.data,
+            metaData: apiResponse.metaData,
+          ),
+        );
+      }
+
+      final ApiResponse apiResponse =
+          await mblRepository.getPilatesExercises(state.page + 1);
+
+      apiResponse.data.isEmpty
+          ? emit(state.copyWith(reachedMaxPages: true))
+          : emit(
+              state.copyWith(
+                status: PilatesStatus.success,
+                pilatesExercises: apiResponse.data,
+                metaData: apiResponse.metaData,
+                reachedMaxPages: false,
+              ),
+            );
     } catch (error) {
       emit(state.copyWith(status: PilatesStatus.error));
     }

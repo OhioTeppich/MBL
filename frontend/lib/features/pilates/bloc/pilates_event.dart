@@ -7,6 +7,8 @@ class PilatesEvent extends Equatable {
 
 class GetPilatesExercises extends PilatesEvent {}
 
+class GetMorePilatesExercises extends PilatesEvent {}
+
 class ToggleViewMode extends PilatesEvent {
   ToggleViewMode(this.viewMode);
 

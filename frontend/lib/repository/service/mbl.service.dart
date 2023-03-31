@@ -26,7 +26,9 @@ class MblService {
     );
   }
 
-  Future<ApiResponse> getPilatesExercises() async {
+  Future<ApiResponse> getPilatesExercises(int page) async {
+    // todo: implement pages parameter to api call
+
     final response = await _httpClient.get(
       getUrl(url: 'pilates-exercises'),
     );
