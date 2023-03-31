@@ -9,5 +9,6 @@ class MblRepository {
 
   Future<ApiResponse> getPilatesExercises(int page) async =>
       service.getPilatesExercises(page);
-  Future<ApiResponse> getMeditations() async => service.getMeditations();
+  Future<ApiResponse> getMeditations(int page) async =>
+      service.getMeditations(page);
 }

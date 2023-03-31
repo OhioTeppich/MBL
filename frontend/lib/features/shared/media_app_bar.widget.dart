@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:mbl/l10n/l10n.dart';
 import 'package:mbl/themes/themes.dart';
 
 class MediaAppBar extends StatelessWidget implements PreferredSizeWidget {

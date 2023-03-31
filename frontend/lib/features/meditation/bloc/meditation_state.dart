@@ -15,6 +15,8 @@ class MeditationState extends Equatable {
     List<Meditation>? meditations,
     MetaData? metaData,
     this.viewMode = false,
+    this.page = 1,
+    this.reachedMaxPages = false,
   })  : meditations = meditations ?? [],
         metaData = metaData ?? MetaData.empty;
 
@@ -22,21 +24,27 @@ class MeditationState extends Equatable {
   final MetaData metaData;
   final MeditationStatus status;
   final bool viewMode;
+  final int page;
+  final bool reachedMaxPages;
 
   @override
-  List<Object?> get props => [status, meditations, viewMode];
+  List<Object?> get props => [status, meditations, viewMode, reachedMaxPages];
 
   MeditationState copyWith({
     List<Meditation>? meditations,
     MeditationStatus? status,
     MetaData? metaData,
     bool? viewMode,
+    int? page,
+    bool? reachedMaxPages,
   }) {
     return MeditationState(
       status: status ?? this.status,
       meditations: meditations ?? this.meditations,
       metaData: metaData ?? this.metaData,
       viewMode: viewMode ?? this.viewMode,
+      page: page ?? this.page,
+      reachedMaxPages: reachedMaxPages ?? this.reachedMaxPages,
     );
   }
 }

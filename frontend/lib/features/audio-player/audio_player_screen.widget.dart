@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mbl/features/audio-player/blur_image.widget.dart';
 import 'package:mbl/features/audio-player/control_area.widget.dart';
@@ -30,7 +30,7 @@ class AudioPlayerScreen extends StatefulWidget {
 
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   late AudioPlayer _player;
-  //late String _host;
+  late String _host;
   late PaletteColor colors;
   late String image;
 
@@ -50,9 +50,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   void initState() {
     super.initState();
     colors = PaletteColor(Colors.transparent, 2);
-    //_host = dotenv.get('HOST');
-    //image = 'http://$_host${widget.coverUrl}';
-    image = widget.coverUrl;
+    _host = dotenv.get('HOST');
+    image = 'http://$_host${widget.coverUrl}';
     _updatePaletts();
     init();
   }
@@ -67,8 +66,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
 
   void init() async {
     _player = AudioPlayer();
-    //await _player.setUrl('http://$_host${widget.audioUrl}');
-    await _player.setUrl(widget.audioUrl);
+    await _player.setUrl('http://$_host${widget.audioUrl}');
   }
 
   @override

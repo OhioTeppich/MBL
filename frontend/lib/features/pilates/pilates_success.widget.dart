@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/features/pilates/bloc/pilates_bloc.dart';
 import 'package:mbl/features/shared/collection/collection.widget.dart';
 import 'package:mbl/features/shared/collection/collection_header.widget.dart';
-import 'package:mbl/features/shared/collection/collection_item.settings.model.dart';
+import 'package:mbl/features/shared/collection/collection_item.model.dart';
 import 'package:mbl/features/shared/list_grid_switch/list_grid_switch.settings.dart';
 import 'package:mbl/l10n/l10n.dart';
 import 'package:mbl/themes/themes.dart';
@@ -36,6 +36,7 @@ class PilatesSuccess extends StatelessWidget {
                 ),
               ),
               body: Collection(
+                reachedMaxPages: state.reachedMaxPages,
                 items: List.from(
                   state.pilatesExercises.map(
                     (item) => CollectionItemModel(

@@ -1,28 +1,68 @@
 import 'package:flutter/material.dart';
-import 'package:mbl/features/shared/collection/collection_item.settings.model.dart';
+import 'package:mbl/features/shared/collection/collection_item.model.dart';
 
-class Collection extends StatelessWidget {
-  const Collection(
-      {super.key, required this.items, required this.loadMoreCallback});
+class Collection extends StatefulWidget {
+  const Collection({
+    super.key,
+    required this.items,
+    required this.loadMoreCallback,
+    required this.reachedMaxPages,
+  });
 
   final List<CollectionItemModel> items;
   final Function loadMoreCallback;
+  final bool reachedMaxPages;
+
+  @override
+  State<Collection> createState() => _CollectionState();
+}
+
+class _CollectionState extends State<Collection> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: List.from(
-        items.map(
-          (item) => Card(
-            child: ListTile(
-              leading: Icon(item.icon),
-              title: Text(item.title ?? ''),
-              onTap: () => item.onClickCallback,
-              // trailing: Icon(Icon.favorite),
-            ),
+    debugPrint(widget.reachedMaxPages.toString());
+    return ListView.builder(
+      physics: AlwaysScrollableScrollPhysics(),
+      itemBuilder: (BuildContext context, int index) {
+        final item = widget.items[index];
+        return Card(
+          child: ListTile(
+            leading: Icon(item.icon),
+            title: Text(item.title ?? ''),
+            onTap: () => item.onClickCallback,
+            // trailing: Icon(Icon.favorite),
           ),
-        ),
-      ),
+        );
+      },
+      itemCount: widget.items.length,
+      controller: _scrollController,
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) widget.loadMoreCallback();
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.9);
   }
 }

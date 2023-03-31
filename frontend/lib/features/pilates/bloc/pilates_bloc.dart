@@ -42,7 +42,8 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
           : emit(
               state.copyWith(
                 status: PilatesStatus.success,
-                pilatesExercises: apiResponse.data,
+                pilatesExercises: List.of(state.pilatesExercises)
+                  ..addAll(apiResponse.data),
                 metaData: apiResponse.metaData,
                 reachedMaxPages: false,
                 page: state.page + 1,
