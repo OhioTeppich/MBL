@@ -24,7 +24,7 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
     try {
       if (state.status == PilatesStatus.initial) {
         final ApiResponse apiResponse =
-            await mblRepository.getPilatesExercises(0);
+            await mblRepository.getPilatesExercises(state.page);
         return emit(
           state.copyWith(
             status: PilatesStatus.success,
@@ -45,6 +45,7 @@ class PilatesBloc extends Bloc<PilatesEvent, PilatesState> {
                 pilatesExercises: apiResponse.data,
                 metaData: apiResponse.metaData,
                 reachedMaxPages: false,
+                page: state.page + 1,
               ),
             );
     } catch (error) {

@@ -15,8 +15,8 @@ class PilatesState extends Equatable {
     List<PilatesExercise>? pilatesExercises,
     MetaData? metaData,
     this.viewMode = false,
-    this.page = 0,
-    this.reachedMaxPages = true,
+    this.page = 1,
+    this.reachedMaxPages = false,
   })  : pilatesExercises = pilatesExercises ?? [],
         metaData = metaData ?? MetaData.empty;
 
@@ -28,7 +28,8 @@ class PilatesState extends Equatable {
   final bool reachedMaxPages;
 
   @override
-  List<Object?> get props => [status, pilatesExercises, viewMode];
+  List<Object?> get props =>
+      [status, pilatesExercises, viewMode, page, reachedMaxPages];
 
   PilatesState copyWith(
       {List<PilatesExercise>? pilatesExercises,
