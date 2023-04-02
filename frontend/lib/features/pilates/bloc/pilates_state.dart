@@ -14,7 +14,7 @@ class PilatesState extends Equatable {
     this.status = PilatesStatus.initial,
     List<PilatesExercise>? pilatesExercises,
     MetaData? metaData,
-    this.viewMode = false,
+    this.viewMode = true,
     this.page = 1,
     this.reachedMaxPages = false,
   })  : pilatesExercises = pilatesExercises ?? [],

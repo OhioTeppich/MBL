@@ -1,3 +1,4 @@
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/repository/mbl.repository.dart';
 import 'package:equatable/equatable.dart';
@@ -9,11 +10,11 @@ import 'package:stream_transform/stream_transform.dart';
 part 'meditation_event.dart';
 part 'meditation_state.dart';
 
-const throttleDuration = Duration(seconds: 5);
+const throttleDuration = Duration(seconds: 1);
 
 EventTransformer<E> throttleDroppable<E>(Duration duration) {
   return (events, mapper) {
-    return events;
+    return droppable<E>().call(events.throttle(duration), mapper);
   };
 }
 
@@ -47,27 +48,19 @@ class MeditationBloc extends Bloc<MeditationEvent, MeditationState> {
         );
       }
 
-      //emit(state.copyWith(status: MeditationStatus.loading));
       final ApiResponse apiResponse =
           await mblRepository.getMeditations(state.page + 1);
 
-      apiResponse.data.isEmpty
-          ? emit(
-              state.copyWith(
-                reachedMaxPages: true,
-                status: MeditationStatus.success,
-              ),
-            )
-          : emit(
-              state.copyWith(
-                status: MeditationStatus.success,
-                meditations: List.of(state.meditations)
-                  ..addAll(apiResponse.data),
-                metaData: apiResponse.metaData,
-                reachedMaxPages: false,
-                page: state.reachedMaxPages ? state.page : state.page + 1,
-              ),
-            );
+      emit(
+        state.copyWith(
+          status: MeditationStatus.success,
+          meditations: List.of(state.meditations)..addAll(apiResponse.data),
+          metaData: apiResponse.metaData,
+          reachedMaxPages: apiResponse.metaData.pagination.page ==
+              state.metaData.pagination.pageCount,
+          page: state.page + 1,
+        ),
+      );
     } catch (error) {
       emit(state.copyWith(status: MeditationStatus.error));
     }
