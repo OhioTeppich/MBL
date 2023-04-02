@@ -44,13 +44,6 @@ class BackgroundCard extends StatelessWidget {
                         style: StandardText.body1,
                       ),
                     ),
-                    /*GestureDetector(
-                      onTap: () {},
-                      child: const Icon(
-                        Icons.favorite_outline,
-                        color: StandardColor.accent,
-                      ),
-                    )*/
                   ],
                 ),
                 Row(

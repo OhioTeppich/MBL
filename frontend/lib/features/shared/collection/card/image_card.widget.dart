@@ -57,13 +57,6 @@ class ImageCard extends StatelessWidget {
                     style: StandardText.body1.copyWith(color: Colors.white),
                   ),
                 ),
-                /*GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.favorite_outline,
-                    color: StandardColor.accent,
-                  ),
-                )*/
               ],
             ),
           ),
