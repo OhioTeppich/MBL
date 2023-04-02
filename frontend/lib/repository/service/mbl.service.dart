@@ -27,10 +27,19 @@ class MblService {
   }
 
   Future<ApiResponse> getPilatesExercises(int page) async {
-    // todo: implement pages parameter to api call
-
     final response = await _httpClient.get(
-      getUrl(url: 'pilates-exercises'),
+      getUrl(
+        url: 'pilates-exercises?',
+        extraParameters: {
+          'fields[0]': 'title',
+          'fields[1]': 'url',
+          'fields[2]': 'length',
+          'populate[video][fields][0]': 'url',
+          'populate[posterImage][fields][0]': 'url',
+          'pagination[page]': '$page',
+          'pagination[pageSize]': '1',
+        },
+      ),
     );
 
     if (response.statusCode == 200) {
@@ -57,19 +66,20 @@ class MblService {
   }
 
   Future<ApiResponse> getMeditations(int page) async {
-    // todo: implement pages parameter to api call
-
     final response = await _httpClient.get(
-      getUrl(url: 'meditations?', extraParameters: {
-        'fields[0]': 'title',
-        'fields[1]': 'speaker',
-        'fields[2]': 'length',
-        'populate[audio][fields][0]': 'url',
-        'populate[audio][fields][1]': 'alternativeText',
-        'populate[cover][fields][0]': 'url',
-        'pagination[page]': '$page',
-        'pagination[pageSize]': '1',
-      }),
+      getUrl(
+        url: 'meditations?',
+        extraParameters: {
+          'fields[0]': 'title',
+          'fields[1]': 'speaker',
+          'fields[2]': 'length',
+          'populate[audio][fields][0]': 'url',
+          'populate[audio][fields][1]': 'alternativeText',
+          'populate[cover][fields][0]': 'url',
+          'pagination[page]': '$page',
+          'pagination[pageSize]': '15',
+        },
+      ),
     );
 
     if (response.statusCode == 200) {
