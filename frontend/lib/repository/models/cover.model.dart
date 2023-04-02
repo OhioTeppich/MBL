@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'cover.model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class Cover {
   Cover(
     this.id,

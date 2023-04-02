@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'meditation.model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class Meditation {
   Meditation(
       this.id, this.title, this.length, this.audio, this.speaker, this.cover);
@@ -13,8 +13,8 @@ class Meditation {
   final String? title;
   final String? speaker;
   final int? length;
-  final Media audio;
-  final Cover cover;
+  final Media? audio;
+  final Cover? cover;
 
   factory Meditation.fromJson(Map<String, dynamic> json) =>
       _$MeditationFromJson(json);

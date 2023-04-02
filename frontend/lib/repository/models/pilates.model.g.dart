@@ -14,12 +14,24 @@ PilatesExercise _$PilatesExerciseFromJson(Map<String, dynamic> json) =>
       json['video'] == null
           ? null
           : Media.fromJson(json['video'] as Map<String, dynamic>),
+      json['cover'] == null
+          ? null
+          : Cover.fromJson(json['cover'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$PilatesExerciseToJson(PilatesExercise instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'length': instance.length,
-      'video': instance.video,
-    };
+Map<String, dynamic> _$PilatesExerciseToJson(PilatesExercise instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  writeNotNull('title', instance.title);
+  writeNotNull('length', instance.length);
+  writeNotNull('video', instance.video);
+  writeNotNull('cover', instance.cover);
+  return val;
+}
