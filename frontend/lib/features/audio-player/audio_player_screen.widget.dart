@@ -16,13 +16,13 @@ class AudioPlayerScreen extends StatefulWidget {
     required this.title,
     required this.speaker,
     required this.audioUrl,
-    required this.coverUrl,
+    required this.imageUrl,
   });
 
   final String title;
   final String speaker;
   final String audioUrl;
-  final String coverUrl;
+  final String imageUrl;
 
   @override
   State<AudioPlayerScreen> createState() => _AudioPlayerScreenState();
@@ -51,7 +51,7 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
     super.initState();
     colors = PaletteColor(Colors.transparent, 2);
     _host = dotenv.get('HOST');
-    image = 'http://$_host${widget.coverUrl}';
+    image = 'http://$_host${widget.imageUrl}';
     _updatePaletts();
     init();
   }

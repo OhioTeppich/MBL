@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cover.model.dart';
+part of 'image.model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Cover _$CoverFromJson(Map<String, dynamic> json) => Cover(
+Image _$ImageFromJson(Map<String, dynamic> json) => Image(
       json['id'] as int?,
       json['url'] as String?,
     );
 
-Map<String, dynamic> _$CoverToJson(Cover instance) {
+Map<String, dynamic> _$ImageToJson(Image instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {

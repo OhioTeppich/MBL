@@ -38,18 +38,21 @@ class MeditationSuccess extends StatelessWidget {
                 ),
               ),
               body: Collection(
-                reachedMaxPages: state.reachedMaxPages,
+                viewMode: state.viewMode,
                 items: List.from(
                   state.meditations.map(
                     (item) => CollectionItemModel(
                       item.title,
-                      Icons.videocam,
+                      Icons.mic,
+                      item.image,
+                      item.speaker,
                       () {
                         // context.read<MeditationBloc>().add( navigate to audio or video player );
                       },
                     ),
                   ),
                 ),
+                contentType: ContentType.audio,
                 loadMoreCallback: () {
                   context.read<MeditationBloc>().add(GetMeditation());
                 },

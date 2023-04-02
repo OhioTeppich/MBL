@@ -36,25 +36,28 @@ class PilatesSuccess extends StatelessWidget {
                 ),
               ),
               body: Collection(
-                reachedMaxPages: state.reachedMaxPages,
+                viewMode: state.viewMode,
                 items: List.from(
                   state.pilatesExercises.map(
                     (item) => CollectionItemModel(
                       item.title,
                       Icons.videocam,
+                      item.image,
+                      item.title,
                       () {
                         // context.read<PilatesBloc>().add( navigate to audio or video player );
                       },
                     ),
                   ),
                 ),
+                contentType: ContentType.video,
                 loadMoreCallback: () {
-                  // context.read<PilatesBloc>().add( call load more event );
+                  context.read<PilatesBloc>().add(GetPilatesExercises());
                 },
               ),
             );
           case PilatesStatus.error:
-            return Text(l10n.errorWidgetLabel);
+            return Center(child: Text(l10n.errorWidgetLabel));
           case PilatesStatus.initial:
             return const Text('');
           default:
