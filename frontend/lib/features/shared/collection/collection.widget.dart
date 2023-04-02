@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:mbl/features/shared/collection/collection_grid.widget.dart';
+import 'package:mbl/features/shared/collection/collection_list.widget.dart';
 import 'package:mbl/features/shared/collection/collection_item.model.dart';
+import 'package:mbl/themes/themes.dart';
+
+enum ContentType { audio, video }
 
 class Collection extends StatefulWidget {
   const Collection({
     super.key,
     required this.items,
+    required this.viewMode,
+    required this.contentType,
     required this.loadMoreCallback,
-    required this.reachedMaxPages,
   });
 
   final List<CollectionItemModel> items;
   final Function loadMoreCallback;
-  final bool reachedMaxPages;
+  final bool viewMode;
+  final ContentType contentType;
 
   @override
   State<Collection> createState() => _CollectionState();
@@ -28,22 +35,25 @@ class _CollectionState extends State<Collection> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(widget.reachedMaxPages.toString());
-    return ListView.builder(
-      physics: AlwaysScrollableScrollPhysics(),
-      itemBuilder: (BuildContext context, int index) {
-        final item = widget.items[index];
-        return Card(
-          child: ListTile(
-            leading: Icon(item.icon),
-            title: Text(item.title ?? ''),
-            onTap: () => item.onClickCallback,
-            // trailing: Icon(Icon.favorite),
-          ),
-        );
-      },
-      itemCount: widget.items.length,
-      controller: _scrollController,
+    return SingleChildScrollView(
+      physics: const ScrollPhysics(),
+      child: Column(
+        children: [
+          widget.viewMode
+              ? CollectionGrid(
+                  widget: widget,
+                  scrollController: _scrollController,
+                  contentType: widget.contentType,
+                )
+              : CollectionList(
+                  widget: widget, scrollController: _scrollController),
+          Text(
+            'Drag up to Load more',
+            style: StandardText.captionNormal
+                .copyWith(color: StandardColor.secondaryTextColor),
+          )
+        ],
+      ),
     );
   }
 
