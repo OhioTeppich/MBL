@@ -77,7 +77,7 @@ class MblService {
           'populate[audio][fields][1]': 'alternativeText',
           'populate[image][fields][0]': 'url',
           'pagination[page]': '$page',
-          'pagination[pageSize]': '15',
+          'pagination[pageSize]': '1',
         },
       ),
     );
