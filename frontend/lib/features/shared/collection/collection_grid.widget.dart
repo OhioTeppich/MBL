@@ -28,7 +28,7 @@ class CollectionGrid extends StatelessWidget {
         ),
         itemBuilder: (BuildContext context, int index) {
           final item = widget.items[index];
-          if (index == widget.items.length - 1) {
+          if (index >= widget.items.length - widget.pageSize) {
             return FutureBuilder(
               future: Future.delayed(const Duration(milliseconds: 1500)),
               builder: (context, snapshot) {

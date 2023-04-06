@@ -37,7 +37,7 @@ class MblService {
           'populate[video][fields][0]': 'url',
           'populate[image][fields][0]': 'url',
           'pagination[page]': '$page',
-          'pagination[pageSize]': '1',
+          'pagination[pageSize]': '3',
         },
       ),
     );

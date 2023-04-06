@@ -13,6 +13,7 @@ class Collection extends StatefulWidget {
     required this.contentType,
     required this.loadMoreCallback,
     required this.totalItems,
+    required this.pageSize,
   });
 
   final List<CollectionItemModel> items;
@@ -20,6 +21,7 @@ class Collection extends StatefulWidget {
   final bool viewMode;
   final ContentType contentType;
   final int totalItems;
+  final int pageSize;
 
   @override
   State<Collection> createState() => _CollectionState();

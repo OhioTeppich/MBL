@@ -17,7 +17,7 @@ class CollectionList extends StatelessWidget {
     return ListView.separated(
       itemBuilder: (context, index) {
         final item = widget.items[index];
-        if (index == widget.items.length - 1) {
+        if (index >= widget.items.length - widget.pageSize) {
           return FutureBuilder(
             future: Future.delayed(const Duration(milliseconds: 1500)),
             builder: (context, snapshot) {
@@ -40,7 +40,7 @@ class CollectionList extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     widget.totalItems == widget.items.length
-                        ? Text('No more items',
+                        ? Text('No more enteries',
                             style: StandardText.captionNormal
                                 .copyWith(color: StandardColor.textColor))
                         : Text('Drag to Load more',

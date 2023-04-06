@@ -38,6 +38,7 @@ class PilatesSuccess extends StatelessWidget {
               body: Collection(
                 viewMode: state.viewMode,
                 totalItems: state.metaData.pagination.total,
+                pageSize: state.metaData.pagination.pageSize,
                 items: List.from(
                   state.pilatesExercises.map(
                     (item) => CollectionItemModel(

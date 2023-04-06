@@ -41,6 +41,7 @@ class MeditationSuccess extends StatelessWidget {
               body: Collection(
                 viewMode: state.viewMode,
                 totalItems: state.metaData.pagination.total,
+                pageSize: state.metaData.pagination.pageSize,
                 items: List.from(
                   state.meditations.map(
                     (item) => CollectionItemModel(
@@ -49,7 +50,17 @@ class MeditationSuccess extends StatelessWidget {
                       item.image,
                       item.speaker,
                       () {
-                        //context.read<MeditationBloc>().add();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AudioPlayerScreen(
+                              title: item.title ?? '',
+                              speaker: item.speaker ?? '',
+                              audioUrl: item.audio?.url ?? '',
+                              imageUrl: item.image?.url ?? '',
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),
