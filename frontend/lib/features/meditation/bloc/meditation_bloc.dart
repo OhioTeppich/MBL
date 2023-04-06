@@ -1,10 +1,12 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:flutter/material.dart' as material;
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mbl/repository/mbl.repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mbl/repository/models/api_response.model.dart';
 import 'package:mbl/repository/models/meditation.model.dart';
-import 'package:mbl/repository/models/meta_data.model.dart';
+import 'package:mbl/repository/models/meta_data.model.dart' as meta;
 import 'package:stream_transform/stream_transform.dart';
 
 part 'meditation_event.dart';

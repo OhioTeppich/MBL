@@ -13,15 +13,15 @@ class MeditationState extends Equatable {
   MeditationState({
     this.status = MeditationStatus.initial,
     List<Meditation>? meditations,
-    MetaData? metaData,
+    meta.MetaData? metaData,
     this.viewMode = false,
     this.page = 1,
     this.reachedMaxPages = false,
   })  : meditations = meditations ?? [],
-        metaData = metaData ?? MetaData.empty;
+        metaData = metaData ?? meta.MetaData.empty;
 
   final List<Meditation> meditations;
-  final MetaData metaData;
+  final meta.MetaData metaData;
   final MeditationStatus status;
   final bool viewMode;
   final int page;
@@ -33,7 +33,7 @@ class MeditationState extends Equatable {
   MeditationState copyWith({
     List<Meditation>? meditations,
     MeditationStatus? status,
-    MetaData? metaData,
+    meta.MetaData? metaData,
     bool? viewMode,
     int? page,
     bool? reachedMaxPages,

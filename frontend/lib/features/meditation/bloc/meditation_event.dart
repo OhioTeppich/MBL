@@ -7,8 +7,6 @@ class MeditationEvent extends Equatable {
 
 class GetMeditation extends MeditationEvent {}
 
-class GetMoreMeditation extends MeditationEvent {}
-
 class ToggleViewMode extends MeditationEvent {
   ToggleViewMode(this.viewMode);
 
