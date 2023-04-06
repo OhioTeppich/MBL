@@ -34,11 +34,14 @@ class CollectionHeader extends StatelessWidget implements PreferredSizeWidget {
           endIndent: 15,
           color: StandardColor.strokeColor,
         ),
-        GestureDetector(
-          onTap: () {},
-          child: const Icon(
-            Icons.filter_alt,
-            color: StandardColor.accent,
+        Padding(
+          padding: const EdgeInsets.only(right: 20),
+          child: GestureDetector(
+            onTap: () {},
+            child: const Icon(
+              Icons.filter_alt,
+              color: StandardColor.accent,
+            ),
           ),
         ),
       ],

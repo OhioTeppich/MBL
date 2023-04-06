@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mbl/features/audio-player/audio_player_screen.widget.dart';
 import 'package:mbl/features/meditation/bloc/meditation_bloc.dart';
 import 'package:mbl/features/shared/collection/collection.widget.dart';
 import 'package:mbl/features/shared/collection/collection_header.widget.dart';
@@ -39,6 +40,7 @@ class MeditationSuccess extends StatelessWidget {
               ),
               body: Collection(
                 viewMode: state.viewMode,
+                totalItems: state.metaData.pagination.total,
                 items: List.from(
                   state.meditations.map(
                     (item) => CollectionItemModel(
@@ -47,7 +49,7 @@ class MeditationSuccess extends StatelessWidget {
                       item.image,
                       item.speaker,
                       () {
-                        // context.read<MeditationBloc>().add( navigate to audio or video player );
+                        //context.read<MeditationBloc>().add();
                       },
                     ),
                   ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mbl/features/shared/collection/collection_grid.widget.dart';
 import 'package:mbl/features/shared/collection/collection_list.widget.dart';
 import 'package:mbl/features/shared/collection/collection_item.model.dart';
-import 'package:mbl/themes/themes.dart';
 
 enum ContentType { audio, video }
 
@@ -13,12 +12,14 @@ class Collection extends StatefulWidget {
     required this.viewMode,
     required this.contentType,
     required this.loadMoreCallback,
+    required this.totalItems,
   });
 
   final List<CollectionItemModel> items;
   final Function loadMoreCallback;
   final bool viewMode;
   final ContentType contentType;
+  final int totalItems;
 
   @override
   State<Collection> createState() => _CollectionState();
@@ -35,26 +36,16 @@ class _CollectionState extends State<Collection> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const ScrollPhysics(),
-      child: Column(
-        children: [
-          widget.viewMode
-              ? CollectionGrid(
-                  widget: widget,
-                  scrollController: _scrollController,
-                  contentType: widget.contentType,
-                )
-              : CollectionList(
-                  widget: widget, scrollController: _scrollController),
-          Text(
-            'Drag up to Load more',
-            style: StandardText.captionNormal
-                .copyWith(color: StandardColor.secondaryTextColor),
+    return widget.viewMode
+        ? CollectionGrid(
+            widget: widget,
+            scrollController: _scrollController,
+            contentType: widget.contentType,
           )
-        ],
-      ),
-    );
+        : CollectionList(
+            widget: widget,
+            scrollController: _scrollController,
+          );
   }
 
   @override

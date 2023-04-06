@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mbl/features/shared/collection/card/card.dart';
 import 'package:mbl/features/shared/collection/collection.widget.dart';
+import 'package:mbl/themes/themes.dart';
 
 class CollectionGrid extends StatelessWidget {
   const CollectionGrid({
@@ -25,19 +26,41 @@ class CollectionGrid extends StatelessWidget {
           crossAxisSpacing: 20,
           mainAxisSpacing: 20,
         ),
-        physics: const AlwaysScrollableScrollPhysics(),
-        shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
           final item = widget.items[index];
+          if (index == widget.items.length - 1) {
+            return FutureBuilder(
+              future: Future.delayed(const Duration(milliseconds: 1500)),
+              builder: (context, snapshot) {
+                if (contentType == ContentType.audio &&
+                    snapshot.connectionState == ConnectionState.done) {
+                  return BackgroundCard(item: item);
+                } else if (contentType == ContentType.video &&
+                    snapshot.connectionState == ConnectionState.done) {
+                  return ImageCard(item: item);
+                } else {
+                  return const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 73, vertical: 50),
+                    child: CircularProgressIndicator(
+                      color: StandardColor.accent,
+                    ),
+                  );
+                }
+              },
+            );
+          }
           if (contentType == ContentType.audio) {
             return BackgroundCard(item: item);
           }
           if (contentType == ContentType.video) {
             return ImageCard(item: item);
           }
+          return Container();
         },
-        itemCount: widget.items.length,
         controller: _scrollController,
+        itemCount: widget.items.length,
+        physics: const AlwaysScrollableScrollPhysics(),
+        scrollDirection: Axis.vertical,
       ),
     );
   }
