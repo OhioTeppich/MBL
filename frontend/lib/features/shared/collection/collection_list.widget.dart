@@ -38,14 +38,16 @@ class CollectionList extends StatelessWidget {
                       onTap: () => item.onClickCallback,
                       // trailing: Icon(Icon.favorite),
                     ),
-                    const SizedBox(height: 20),
-                    widget.totalItems == widget.items.length
-                        ? Text('No more enteries',
-                            style: StandardText.captionNormal
-                                .copyWith(color: StandardColor.textColor))
-                        : Text('Drag to Load more',
-                            style: StandardText.captionNormal
-                                .copyWith(color: StandardColor.textColor))
+                    if (index == widget.items.length - 1) ...[
+                      const SizedBox(height: 20),
+                      widget.totalItems == widget.items.length
+                          ? Text('No more enteries',
+                              style: StandardText.captionNormal
+                                  .copyWith(color: StandardColor.textColor))
+                          : Text('Drag to Load more',
+                              style: StandardText.captionNormal
+                                  .copyWith(color: StandardColor.textColor))
+                    ],
                   ],
                 );
               } else {
