@@ -35,7 +35,7 @@ class CollectionList extends StatelessWidget {
                       ),
                       title:
                           Text(item.title ?? '', style: StandardText.body1Bold),
-                      onTap: () => item.onClickCallback,
+                      onTap: () => item.onClickCallback(),
                       // trailing: Icon(Icon.favorite),
                     ),
                     if (index == widget.items.length - 1) ...[
