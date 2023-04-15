@@ -17,6 +17,7 @@ PilatesExercise _$PilatesExerciseFromJson(Map<String, dynamic> json) =>
       json['image'] == null
           ? null
           : Image.fromJson(json['image'] as Map<String, dynamic>),
+      json['url'] as String?,
     );
 
 Map<String, dynamic> _$PilatesExerciseToJson(PilatesExercise instance) {
@@ -30,6 +31,7 @@ Map<String, dynamic> _$PilatesExerciseToJson(PilatesExercise instance) {
 
   writeNotNull('id', instance.id);
   writeNotNull('title', instance.title);
+  writeNotNull('url', instance.url);
   writeNotNull('length', instance.length);
   writeNotNull('video', instance.video);
   writeNotNull('image', instance.image);

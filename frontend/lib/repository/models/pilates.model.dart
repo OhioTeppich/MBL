@@ -6,10 +6,12 @@ part 'pilates.model.g.dart';
 
 @JsonSerializable(includeIfNull: false)
 class PilatesExercise {
-  PilatesExercise(this.id, this.title, this.length, this.video, this.image);
+  PilatesExercise(
+      this.id, this.title, this.length, this.video, this.image, this.url);
 
   final int? id;
   final String? title;
+  final String? url;
   final int? length;
   final Media? video;
   final Image? image;

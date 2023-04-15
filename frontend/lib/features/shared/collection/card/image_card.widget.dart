@@ -21,8 +21,8 @@ class ImageCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: NetworkImage('http://$host${item.image?.url}'),
-                    fit: BoxFit.cover,
+                    image: NetworkImage(item.image?.url ?? ''),
+                    fit: BoxFit.fill,
                   ),
                 ),
               )
@@ -30,11 +30,11 @@ class ImageCard extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Colors.black,
+                Colors.black.withOpacity(0.5),
                 Colors.transparent,
               ],
             ),

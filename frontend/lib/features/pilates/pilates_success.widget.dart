@@ -7,6 +7,7 @@ import 'package:mbl/features/shared/collection/collection_item.model.dart';
 import 'package:mbl/features/shared/list_grid_switch/list_grid_switch.settings.dart';
 import 'package:mbl/l10n/l10n.dart';
 import 'package:mbl/themes/themes.dart';
+import 'package:mbl/repository/models/image.model.dart' as model;
 
 class PilatesSuccess extends StatelessWidget {
   const PilatesSuccess({super.key});
@@ -14,7 +15,11 @@ class PilatesSuccess extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return BlocBuilder<PilatesBloc, PilatesState>(
+    return BlocConsumer<PilatesBloc, PilatesState>(
+      listenWhen: (previous, current) => current.reachedMaxPages,
+      listener: (context, state) {
+        showSnackBar(context);
+      },
       builder: (context, state) {
         switch (state.status) {
           case PilatesStatus.loading:
@@ -40,17 +45,24 @@ class PilatesSuccess extends StatelessWidget {
                 totalItems: state.metaData.pagination.total,
                 pageSize: state.metaData.pagination.pageSize,
                 items: List.from(
-                  state.pilatesExercises.map(
-                    (item) => CollectionItemModel(
+                  state.pilatesExercises.map((item) {
+                    // Null abfrage für youtube video hinzufügen
+                    final ytId = item.url?.split('=').last;
+                    final ytImageUrl = ytId == null
+                        ? ''
+                        : 'https://img.youtube.com/vi/$ytId/maxresdefault.jpg';
+                    return CollectionItemModel(
                       item.title,
                       Icons.videocam,
-                      item.image,
+                      item.image?.id != null
+                          ? item.image
+                          : model.Image(0, ytImageUrl),
                       item.title,
                       () {
                         // context.read<PilatesBloc>().add( navigate to audio or video player );
                       },
-                    ),
-                  ),
+                    );
+                  }),
                 ),
                 contentType: ContentType.video,
                 loadMoreCallback: () {
@@ -68,4 +80,18 @@ class PilatesSuccess extends StatelessWidget {
       },
     );
   }
+}
+
+void showSnackBar(BuildContext context) {
+  final snackBar = SnackBar(
+    content: Center(
+      child: Text(
+        'No more enteries',
+        style: StandardText.captionBold,
+      ),
+    ),
+    backgroundColor: StandardColor.accent,
+    behavior: SnackBarBehavior.floating,
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
