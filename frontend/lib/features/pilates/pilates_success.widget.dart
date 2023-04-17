@@ -49,7 +49,7 @@ class PilatesSuccess extends StatelessWidget {
                     // Null abfrage für youtube video hinzufügen
                     final ytId = item.url?.split('=').last;
                     final ytImageUrl = ytId == null
-                        ? ''
+                        ? null
                         : 'https://img.youtube.com/vi/$ytId/maxresdefault.jpg';
                     return CollectionItemModel(
                       item.title,
