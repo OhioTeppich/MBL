@@ -59,6 +59,7 @@ class PilatesSuccess extends StatelessWidget {
                           : model.Image(0, ytImageUrl),
                       item.title,
                       () {
+                        // add when video player is ready
                         // context.read<PilatesBloc>().add( navigate to audio or video player );
                       },
                     );

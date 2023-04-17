@@ -12,50 +12,53 @@ class BackgroundCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
+    return GestureDetector(
+      onTap: () => item.onClickCallback(),
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 10,
-            top: 10,
-            right: 10,
-            bottom: 10,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: Text(
-                      item.title ?? '',
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 10,
+              top: 10,
+              right: 10,
+              bottom: 10,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      child: Text(
+                        item.title ?? '',
+                        style: StandardText.body1,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.mic),
+                    Text(
+                      item.speaker ?? '',
                       style: StandardText.body1,
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Icon(Icons.mic),
-                  Text(
-                    item.speaker ?? '',
-                    style: StandardText.body1,
-                  ),
-                ],
-              )
-            ],
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
