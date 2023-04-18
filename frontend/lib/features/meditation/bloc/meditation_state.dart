@@ -13,30 +13,38 @@ class MeditationState extends Equatable {
   MeditationState({
     this.status = MeditationStatus.initial,
     List<Meditation>? meditations,
-    MetaData? metaData,
+    meta.MetaData? metaData,
     this.viewMode = false,
+    this.page = 1,
+    this.reachedMaxPages = false,
   })  : meditations = meditations ?? [],
-        metaData = metaData ?? MetaData.empty;
+        metaData = metaData ?? meta.MetaData.empty;
 
   final List<Meditation> meditations;
-  final MetaData metaData;
+  final meta.MetaData metaData;
   final MeditationStatus status;
   final bool viewMode;
+  final int page;
+  final bool reachedMaxPages;
 
   @override
-  List<Object?> get props => [status, meditations, viewMode];
+  List<Object?> get props => [status, meditations, viewMode, reachedMaxPages];
 
   MeditationState copyWith({
     List<Meditation>? meditations,
     MeditationStatus? status,
-    MetaData? metaData,
+    meta.MetaData? metaData,
     bool? viewMode,
+    int? page,
+    bool? reachedMaxPages,
   }) {
     return MeditationState(
       status: status ?? this.status,
       meditations: meditations ?? this.meditations,
       metaData: metaData ?? this.metaData,
       viewMode: viewMode ?? this.viewMode,
+      page: page ?? this.page,
+      reachedMaxPages: reachedMaxPages ?? this.reachedMaxPages,
     );
   }
 }

@@ -10,17 +10,29 @@ Meditation _$MeditationFromJson(Map<String, dynamic> json) => Meditation(
       json['id'] as int?,
       json['title'] as String?,
       json['length'] as int?,
-      Media.fromJson(json['audio'] as Map<String, dynamic>),
+      json['audio'] == null
+          ? null
+          : Media.fromJson(json['audio'] as Map<String, dynamic>),
       json['speaker'] as String?,
-      Cover.fromJson(json['cover'] as Map<String, dynamic>),
+      json['image'] == null
+          ? null
+          : Image.fromJson(json['image'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$MeditationToJson(Meditation instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'speaker': instance.speaker,
-      'length': instance.length,
-      'audio': instance.audio,
-      'cover': instance.cover,
-    };
+Map<String, dynamic> _$MeditationToJson(Meditation instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('id', instance.id);
+  writeNotNull('title', instance.title);
+  writeNotNull('speaker', instance.speaker);
+  writeNotNull('length', instance.length);
+  writeNotNull('audio', instance.audio);
+  writeNotNull('image', instance.image);
+  return val;
+}

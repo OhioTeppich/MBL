@@ -1,18 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'media.model.dart';
+part of 'image.model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Media _$MediaFromJson(Map<String, dynamic> json) => Media(
+Image _$ImageFromJson(Map<String, dynamic> json) => Image(
       json['id'] as int?,
       json['url'] as String?,
-      json['alternativeText'] as String?,
     );
 
-Map<String, dynamic> _$MediaToJson(Media instance) {
+Map<String, dynamic> _$ImageToJson(Image instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -23,6 +22,5 @@ Map<String, dynamic> _$MediaToJson(Media instance) {
 
   writeNotNull('id', instance.id);
   writeNotNull('url', instance.url);
-  writeNotNull('alternativeText', instance.alternativeText);
   return val;
 }

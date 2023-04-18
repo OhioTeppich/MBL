@@ -9,14 +9,14 @@ extension PilatesX on PilatesStatus {
   bool get isLoading => this == PilatesStatus.loading;
 }
 
-// PilatesExercise? selectedExercise, is just implemented for presentational purposes to show how the state can be updated and will be deleted soon
-
 class PilatesState extends Equatable {
   PilatesState({
     this.status = PilatesStatus.initial,
     List<PilatesExercise>? pilatesExercises,
     MetaData? metaData,
-    this.viewMode = false,
+    this.viewMode = true,
+    this.page = 1,
+    this.reachedMaxPages = false,
   })  : pilatesExercises = pilatesExercises ?? [],
         metaData = metaData ?? MetaData.empty;
 
@@ -24,21 +24,27 @@ class PilatesState extends Equatable {
   final MetaData metaData;
   final PilatesStatus status;
   final bool viewMode;
+  final int page;
+  final bool reachedMaxPages;
 
   @override
-  List<Object?> get props => [status, pilatesExercises, viewMode];
+  List<Object?> get props =>
+      [status, pilatesExercises, viewMode, page, reachedMaxPages];
 
-  PilatesState copyWith({
-    List<PilatesExercise>? pilatesExercises,
-    PilatesStatus? status,
-    MetaData? metaData,
-    bool? viewMode,
-  }) {
+  PilatesState copyWith(
+      {List<PilatesExercise>? pilatesExercises,
+      PilatesStatus? status,
+      MetaData? metaData,
+      bool? viewMode,
+      int? page,
+      bool? reachedMaxPages}) {
     return PilatesState(
       status: status ?? this.status,
       pilatesExercises: pilatesExercises ?? this.pilatesExercises,
       metaData: metaData ?? this.metaData,
       viewMode: viewMode ?? this.viewMode,
+      page: page ?? this.page,
+      reachedMaxPages: reachedMaxPages ?? this.reachedMaxPages,
     );
   }
 }

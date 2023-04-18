@@ -13,10 +13,18 @@ class StrapiResponseConverter {
 
   static Map<String, dynamic> _traverse(Map<String, dynamic> data) {
     if (data.containsKey('attributes')) {
-      return _traverse(_removeObjectKey(data, 'attributes'));
+      if (data['attributes'] == null) {
+        data.remove('attributes');
+      } else {
+        return _traverse(_removeObjectKey(data, 'attributes'));
+      }
     }
     if (data.containsKey('data')) {
-      return _traverse(_removeObjectKey(data, 'data'));
+      if (data['data'] == null) {
+        data.remove('data');
+      } else {
+        return _traverse(_removeObjectKey(data, 'data'));
+      }
     }
 
     data.forEach((key, value) {

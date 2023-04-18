@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'pagination.model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class Pagination {
   const Pagination(
       {required this.page,

@@ -3,7 +3,7 @@ import 'package:mbl/repository/models/pagination.model.dart';
 
 part 'meta_data.model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class MetaData {
   const MetaData({required this.pagination});
   final Pagination pagination;

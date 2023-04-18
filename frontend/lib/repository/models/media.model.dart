@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'media.model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class Media {
   Media(this.id, this.url, this.alternativeText);
 

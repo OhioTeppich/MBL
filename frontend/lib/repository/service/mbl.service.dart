@@ -26,9 +26,20 @@ class MblService {
     );
   }
 
-  Future<ApiResponse> getPilatesExercises() async {
+  Future<ApiResponse> getPilatesExercises(int page) async {
     final response = await _httpClient.get(
-      getUrl(url: 'pilates-exercises'),
+      getUrl(
+        url: 'pilates-exercises?',
+        extraParameters: {
+          'fields[0]': 'title',
+          'fields[1]': 'url',
+          'fields[2]': 'length',
+          'populate[video][fields][0]': 'url',
+          'populate[image][fields][0]': 'url',
+          'pagination[page]': '$page',
+          'pagination[pageSize]': '3',
+        },
+      ),
     );
 
     if (response.statusCode == 200) {
@@ -54,11 +65,21 @@ class MblService {
     }
   }
 
-  Future<ApiResponse> getMeditations() async {
+  Future<ApiResponse> getMeditations(int page) async {
     final response = await _httpClient.get(
       getUrl(
-          url:
-              'meditations?fields[0]=title&fields[1]=speaker&fields[2]=length&populate[audio][fields][0]=url&populate[audio][fields][1]=alternativeText&populate[cover][fields][0]=url'),
+        url: 'meditations?',
+        extraParameters: {
+          'fields[0]': 'title',
+          'fields[1]': 'speaker',
+          'fields[2]': 'length',
+          'populate[audio][fields][0]': 'url',
+          'populate[audio][fields][1]': 'alternativeText',
+          'populate[image][fields][0]': 'url',
+          'pagination[page]': '$page',
+          'pagination[pageSize]': '1',
+        },
+      ),
     );
 
     if (response.statusCode == 200) {

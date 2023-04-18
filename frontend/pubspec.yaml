@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.2
+  bloc_concurrency: ^0.2.0
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
@@ -26,6 +27,7 @@ dependencies:
   audio_video_progress_bar: ^1.0.0
   rxdart: ^0.27.7
   palette_generator: ^0.3.3+2
+  stream_transform: ^2.1.0
 
 dev_dependencies:
   bloc_test: ^9.1.1
