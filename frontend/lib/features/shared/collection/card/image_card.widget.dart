@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:mbl/features/shared/collection/collection_item.model.dart';
 import 'package:mbl/themes/themes.dart';
 
 class ImageCard extends StatelessWidget {
-  ImageCard({
+  const ImageCard({
     super.key,
     required this.item,
   });
 
   final CollectionItemModel item;
-  final host = dotenv.get('HOST');
 
   @override
   Widget build(BuildContext context) {

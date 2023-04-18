@@ -36,7 +36,6 @@ class CollectionList extends StatelessWidget {
                       title:
                           Text(item.title ?? '', style: StandardText.body1Bold),
                       onTap: () => item.onClickCallback(),
-                      // trailing: Icon(Icon.favorite),
                     ),
                     if (index == widget.items.length - 1) ...[
                       const SizedBox(height: 20),
@@ -72,7 +71,6 @@ class CollectionList extends StatelessWidget {
           ),
           title: Text(item.title ?? '', style: StandardText.body1Bold),
           onTap: () => item.onClickCallback,
-          // trailing: Icon(Icon.favorite),
         );
       },
       separatorBuilder: (context, index) => const Divider(
