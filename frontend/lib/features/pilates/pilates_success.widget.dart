@@ -88,10 +88,10 @@ void showSnackBar(BuildContext context) {
     content: Center(
       child: Text(
         'No more enteries',
-        style: StandardText.captionBold,
+        style: StandardText.captionBold.copyWith(color: Colors.white),
       ),
     ),
-    backgroundColor: StandardColor.accent,
+    backgroundColor: StandardColor.textColor,
     behavior: SnackBarBehavior.floating,
   );
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
